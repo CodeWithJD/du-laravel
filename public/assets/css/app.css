@@ -1,0 +1,125 @@
+@charset "UTF-8";
+.left-bar ul li {
+  margin-top: 10px;
+}
+.left-bar ul li a {
+  font-size: 20px;
+  font-family: Rubik, sans-serif;
+  font-weight: 200;
+  min-width: 100%;
+}
+.left-bar ul li a:hover {
+  color: #f672a7;
+}
+
+.auth-page-wrapper .bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #030346;
+}
+.auth-page-wrapper .auth-page-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+.auth-page-wrapper .auth-one-bg-position {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 380px;
+}
+@media (max-width: 575.98px) {
+  .auth-page-wrapper .auth-one-bg-position {
+    height: 280px;
+  }
+}
+.auth-page-wrapper #password-contain {
+  display: none;
+}
+.auth-page-wrapper #password-contain p {
+  padding-left: 13px;
+}
+.auth-page-wrapper #password-contain p.valid::before {
+  position: relative;
+  left: -8px;
+  content: "✔";
+  color: #0ab39c;
+}
+.auth-page-wrapper #password-contain p.invalid::before {
+  position: relative;
+  left: -8px;
+  content: "✖";
+  color: #f06548;
+}
+
+.wraper {
+  min-height: 100vh;
+  min-width: 100vw;
+  max-height: 100vh;
+  max-width: 100vw;
+  overflow: hidden;
+}
+@media only screen and (max-width: 767px) {
+  .wraper {
+    overflow: auto;
+  }
+}
+.wraper .right-content {
+  min-height: 100vh !important;
+  padding: 20px;
+  background-color: #030346;
+}
+.wraper .right-content .right-item .header {
+  padding: 0.6rem;
+  letter-spacing: 0.06em;
+  line-height: 2em;
+  color: #030346;
+}
+.wraper .right-content .right-item .header .welcome-title {
+  font-size: 35px;
+  font-weight: 300;
+  font-family: Rubik, sans-serif;
+}
+.wraper .right-content .right-item .boxStaking {
+  min-height: 500px;
+  max-height: 500px;
+  overflow: hidden;
+}
+.wraper .right-content .right-item .boxStaking .apex-charts {
+  min-height: 250px;
+  max-height: 250px;
+}
+.wraper .right-content .right-item .boxStaking .list-group {
+  min-height: 250px;
+  max-height: 250px;
+  overflow: auto;
+  padding-bottom: 50px;
+}
+.wraper .dashboard .card-title {
+  font-family: Rubik, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: white;
+}
+.wraper .dashboard .memeber-title {
+  font-size: 13px;
+  color: #030346;
+}
+.wraper .apex-charts {
+  min-height: 10px !important;
+}
+.wraper .apex-charts text {
+  font-family: Rubik, sans-serif !important;
+}
+.wraper .apex-charts .apexcharts-canvas {
+  margin: 0 auto;
+}
+
+* {
+  box-sizing: border-box;
+}

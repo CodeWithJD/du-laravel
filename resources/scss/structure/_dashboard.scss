@@ -1,0 +1,81 @@
+.wraper {
+    min-height: 100vh;
+    min-width: 100vw;
+    max-height: 100vh;
+    max-width: 100vw;
+    overflow: hidden;
+
+    // For mobile devices with maximum width 767px
+    @media only screen and (max-width: 767px) {
+        overflow: auto;
+    }
+
+
+    .right-content {
+        min-height: 100vh !important;
+        padding: 20px;
+        background-color: $indigo;
+
+        .right-item {
+
+            .header {
+                padding: 0.6rem;
+                letter-spacing: 0.06em;
+                line-height: 2em;
+                color: $indigo;
+
+                .welcome-title {
+                    font-size: 35px;
+                    font-weight: 300;
+                    font-family: $rubik;
+                }
+            }
+
+            .boxStaking {
+                min-height: 500px;
+                max-height: 500px;
+                overflow: hidden;
+
+                .apex-charts {
+                    min-height: 250px;
+                    max-height: 250px;
+                }
+
+                .list-group {
+                    min-height: 250px;
+                    max-height: 250px;
+                    overflow: auto;
+                    padding-bottom: 50px;
+                }
+
+            }
+        }
+    }
+
+    .dashboard {
+        .card-title {
+            font-family: $rubik;
+            font-weight: 400;
+            font-size: 20px;
+            color: white;
+        }
+
+        .memeber-title {
+            font-size: 13px;
+            color: $indigo;
+        }
+    }
+
+    .apex-charts {
+        min-height: 10px !important;
+
+        text {
+            font-family: $rubik !important;
+        }
+
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    }
+
+}
