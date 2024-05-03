@@ -18,13 +18,16 @@
                 <div class="right-item bg-body h-100 rounded-5 p-4">
                     <div class="header d-flex justify-content-between">
                         <div>
-                            <span class="welcome-title d-none d-md-block">Welcome to DuStake</span>
-                            <p class="welcome-massage p-0 m-0">Hello, <span class="text-info">Farhan Ahmed</span> <span
+                            <span class="welcome-title d-none d-md-block">@yield('page')</span>
+                            <p class="welcome-massage p-0 mt-1">Hello, <span class="text-info">{{ $name }}</span> <span
                                     class="d-none d-md-block">You
-                                    can manage your DU staking and access all analyses from this dashboard.</span></p>
+                                    can manage your DU Network and access all analyses from this dashboard.</span></p>
                         </div>
                         <div class="align-content-center">
-                            <a class="btn btn-danger" href="#">Logout</a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Logout</button>
+                            </form>
                         </div>
                     </div>
                      <!-- contents of this page -->

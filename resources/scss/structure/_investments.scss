@@ -1,0 +1,26 @@
+.stake-box {
+    width: 500px;
+
+    .select-item {
+        background-color: #c0bfbf;
+        height: 70px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $indigo;
+        font-size: 30px;
+
+        &.active {
+            background-color: $indigo;
+            color: white;
+        }
+    }
+
+    .tab-pane {
+
+        .penalty {
+            font-size: 20px;
+            color: $indigo;
+        }
+    }
+}

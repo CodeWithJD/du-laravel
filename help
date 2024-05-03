@@ -1,0 +1,21 @@
+-- User table main
+
+UPDATE users
+SET invite_code = FLOOR(RAND() * 900000) + 100000
+WHERE invite_code IS NULL;
+
+UPDATE users
+SET invite_code = FLOOR(RAND() * 900000) + 100000
+WHERE invite_code IN (
+    SELECT invite_code
+    FROM (
+        SELECT invite_code, COUNT(*) AS count
+        FROM users
+        GROUP BY invite_code
+        HAVING count > 1
+    ) AS duplicates
+);
+
+
+
+-- Password ko Bcrypt main convert karna hai

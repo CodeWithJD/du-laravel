@@ -4,9 +4,28 @@
 @import 'structure/leftbar';
 @import 'structure/auth';
 @import 'structure/dashboard';
+@import 'structure/wallet';
+@import 'structure/transfer';
+@import 'structure/investments';
 
 
 
 * {
     box-sizing: border-box;
+}
+
+.text-pink {
+    color: $pink;
+}
+
+.btn-pink {
+    background-color: $pink;
+
+    &:hover {
+        background-color: $red;
+    }
+}
+
+.bg-pink {
+    background-color: $pink;
 }
