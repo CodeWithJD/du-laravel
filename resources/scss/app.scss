@@ -29,3 +29,22 @@
 .bg-pink {
     background-color: $pink;
 }
+
+.mobile-menu {
+    height: 80px;
+    display: none;
+
+     // For mobile devices with maximum width 767px
+     @media only screen and (max-width: 767px) {
+        display: block;
+    }
+
+    .menu-item {
+        background-color: white;
+
+        &.active {
+            border-top: 5px solid $indigo;
+        }
+    }
+}
+

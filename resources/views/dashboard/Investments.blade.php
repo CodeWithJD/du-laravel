@@ -63,17 +63,17 @@
 
                 {{-- stake code start from here --}}
                 <div class="tab-pane fade show active" id="stake">
-                    <div class="my-5 pb-2 d-flex justify-content-between border-bottom border-3">
+                    {{-- <div class="my-5 pb-2 d-flex justify-content-between border-bottom border-3">
                         <span>Daily Reward:</span>
                         <span>{{ $rewardSettings->staking_400d_reward }}%</span>
-                    </div>
+                    </div> --}}
 
                     <!-- Form for staking -->
                     <form action="{{ route('stake.process') }}" method="POST">
                         @csrf
 
                         <!-- Default Select -->
-                        <div class="mt-1">
+                        <div class="mt-5">
                             <h6 class="text-primary">Choose Lock Period:</h6>
                             <select class="form-control bg-body" name="timeframe">
                                 <option value="200">200 Days</option>

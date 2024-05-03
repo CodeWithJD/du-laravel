@@ -238,7 +238,9 @@ class InvestmentsController extends Controller
         $userDetails->save();
 
         $depositTime = now();
-        $withdrawnTime = $depositTime->copy()->addDays($timeframe); // Set withdrawnTime
+        $timeframe = (int) $request->input('timeframe'); // Convert timeframe to integer before using
+        $withdrawnTime = $depositTime->copy()->addDays($timeframe); // Now this should work without error
+
 
         // Create a new staking entry
         Staking::create([
@@ -264,9 +266,8 @@ class InvestmentsController extends Controller
 
         // Record the fee counter
         DB::table('fees_counter')->insert([
-            'transaction_type' => 'Staking Deposit',
             'fee_type' => 'staking_gas_fee',
-            'total_fees' => $stakingGasFee,
+            'total_fee' => $stakingGasFee,
             'transaction_hash' => $transactionHash,
         ]);
 

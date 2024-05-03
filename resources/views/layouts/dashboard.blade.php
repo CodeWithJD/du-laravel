@@ -13,6 +13,34 @@
             @include('layouts.leftbar')
             <!-- Sidebar End -->
 
+            <!-- Sidebar mobile -->
+            <div class="mobile-menu bg-white fixed-bottom fixed border-top border-primary">
+                <div class="menu d-flex justify-content-center gap-5 border-1 border-primary">
+                    <a href="{{ route('dashboard') }}">
+                        <div class="menu-item text-center {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                            <i class="ri-dashboard-line fs-1 text-primary"></i>
+                            <p class="text-primary">Dashboard</p>
+                        </div>
+                    </a>
+                    <a href="{{ route('wallet.index') }}">
+                        <div class="menu-item text-center {{ request()->routeIs('wallet.index') ? 'active' : '' }}">
+                            <i class="text-primary ri-bank-line fs-1"></i>
+                            <p class="text-primary">Wallet</p>
+                        </div>
+                    </a>
+                    <a href="{{ route('investments.index') }}">
+                        <div class="menu-item text-center {{ request()->routeIs('investments.*') ? 'active' : '' }}">
+                            <i class="text-primary ri-cash-line fs-1"></i>
+                            <p class="text-primary">Investments</p>
+                        </div>
+                    </a>
+                    <div class="menu-item text-center @class(['active' => request()->routeIs('profile')])">
+                        <i class="text-primary ri-user-line fs-1"></i>
+                        <p class="text-primary">Profile</p>
+                    </div>
+                </div>
+            </div>
+
             <!-- MainContents Start -->
             <div class="col-md-10 right-content">
                 <div class="right-item bg-body h-100 rounded-5 p-4">

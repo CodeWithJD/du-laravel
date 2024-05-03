@@ -12,6 +12,12 @@
   color: #f672a7;
 }
 
+.logo {
+  width: 100px;
+  position: absolute;
+  margin-top: 75px;
+}
+
 .auth-page-wrapper .bg-overlay {
   position: absolute;
   top: 0;
@@ -60,6 +66,7 @@
 .wraper {
   min-height: 100vh;
   min-width: 100vw;
+  max-width: 100vw;
 }
 .wraper .right-content {
   min-height: 100vh !important;
@@ -119,11 +126,12 @@
 }
 .wraper .referral-box {
   height: 50px;
+  margin-top: 30px;
 }
 @media only screen and (max-width: 767px) {
   .wraper .referral-box {
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 90px;
   }
 }
 .wraper .referral-box .row .referral-title {
@@ -270,4 +278,20 @@
 
 .bg-pink {
   background-color: #f672a7;
+}
+
+.mobile-menu {
+  height: 80px;
+  display: none;
+}
+@media only screen and (max-width: 767px) {
+  .mobile-menu {
+    display: block;
+  }
+}
+.mobile-menu .menu-item {
+  background-color: white;
+}
+.mobile-menu .menu-item.active {
+  border-top: 5px solid #030346;
 }

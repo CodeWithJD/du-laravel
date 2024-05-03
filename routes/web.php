@@ -7,6 +7,7 @@ use App\Http\Controllers\WalletController;
 use App\Http\Controllers\TransferController;
 use App\Http\Controllers\InvestmentsController;
 use App\Http\Controllers\ReferralLevelsController;
+use App\Http\Controllers\OtpController;
 use Illuminate\Support\Facades\Route;
 
 // Dashboard and Authenticated User Routes
@@ -50,9 +51,15 @@ Route::middleware(['guest'])->group(function () {
 
     Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('login', [AuthController::class, 'login'])->name('login.post');
+
 });
 
-// Fallback Route for handling 404
-Route::fallback(function () {
-    return view('errors.guest404');
+Route::middleware(['guest', 'otp.requested'])->group(function () {
+    Route::post('/send-otp', [OtpController::class, 'sendOtp'])->name('send.otp');
+    Route::post('/verify-otp', [OtpController::class, 'verifyOtp'])->name('verify.otp');
 });
+
+// // Fallback Route for handling 404
+// Route::fallback(function () {
+//     return view('errors.guest404');
+// });

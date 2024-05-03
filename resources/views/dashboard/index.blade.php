@@ -18,14 +18,14 @@
                     <span class="card-title m-0">My Staking</span>
                 </div><!-- end cardheader -->
                 <div class="card-body boxStaking">
-                    <div id="portfolio_donut_charts" data-colors='["#FF5733", "#33FF57", "#3357FF", "#FF33E6"]' class="apex-charts"
-                        dir="ltr">
+                    <div id="portfolio_donut_charts" data-colors='["#FF5733", "#33FF57", "#3357FF", "#FF33E6"]'
+                        class="apex-charts" dir="ltr">
                     </div>
 
                     <ul class="list-group list-group-flush mb-0 mt-3 p-2">
                         <ul class="list-group list-group-flush mb-0 mt-3 p-2">
-                            @if($stakingData->isNotEmpty())
-                                @foreach($stakingData as $staking)
+                            @if ($stakingData->isNotEmpty())
+                                @foreach ($stakingData as $staking)
                                     <li class="list-group-item px-0">
                                         <div class="d-flex">
                                             <div class="ms-2 flex-grow-1">
@@ -33,8 +33,10 @@
                                                 <p class="fs-12 mb-0 text-muted">Remaining Days</p>
                                             </div>
                                             <div class="text-end">
-                                                <h6 class="mb-1">{{ number_format($staking['stake_amount'], 2) }} <span class="small">DU</span></h6>
-                                                <p class="text-success fs-12 mb-0">{{ number_format($staking['roaming_day'], 0) }} Days</p>
+                                                <h6 class="mb-1">{{ number_format($staking['stake_amount'], 2) }} <span
+                                                        class="small">DU</span></h6>
+                                                <p class="text-success fs-12 mb-0">
+                                                    {{ number_format($staking['roaming_day'], 0) }} Days</p>
                                             </div>
                                         </div>
                                     </li>
@@ -69,11 +71,14 @@
                                     <div class="flex-grow-1 ms-3">
                                         <p class="text-uppercase fw-bold fs-12 text-dark mb-1">
                                             Balance </p>
-                                        <h4 class=" mb-0"><span class="counter-value" data-target="{{ $userDetails->available_balance }}">0</span> <span class="memeber-title text-success">Du</span></h4>
+                                        <h4 class=" mb-0"><span class="counter-value"
+                                                data-target="{{ $userDetails->available_balance }}">0</span> <span
+                                                class="memeber-title text-success">Du</span></h4>
                                     </div>
                                     <div class="flex-shrink-0 align-self-end">
                                         <span class="badge bg-success-subtle text-success">
-                                            <i class="ri-arrow-up-s-fill align-middle me-1"></i>{{ $userDetails->reward_balance }}
+                                            <i
+                                                class="ri-arrow-up-s-fill align-middle me-1"></i>{{ $userDetails->reward_balance }}
                                         </span>
                                     </div>
                                 </div>
@@ -92,7 +97,9 @@
                                     <div class="flex-grow-1 ms-3">
                                         <p class="text-uppercase fw-bold fs-12 text-dark mb-1">
                                             My Team</p>
-                                        <h4 class=" mb-0"><span class="counter-value" data-target="{{ $totalTeamSize }}">0</span> <span class="memeber-title">Users</span></h4>
+                                        <h4 class=" mb-0"><span class="counter-value"
+                                                data-target="{{ $totalTeamSize }}">0</span> <span
+                                                class="memeber-title">Users</span></h4>
                                     </div>
                                     <div class="flex-shrink-0 align-self-end">
                                         <span class="badge bg-success-subtle text-primary">
@@ -117,7 +124,8 @@
                                             <p class="text-uppercase fw-bold fs-12 text-dark mb-1">
                                                 Total Directs</p>
                                             <h4 class="mb-0"><span class="counter-value"
-                                                    data-target="{{ $referredUsersCount }}">0</span> <span class="memeber-title">Users</span>
+                                                    data-target="{{ $referredUsersCount }}">0</span> <span
+                                                    class="memeber-title">Users</span>
                                             </h4>
                                         </div>
                                         <div class="flex-shrink-0 align-self-end">
@@ -133,41 +141,89 @@
 
                     <!-- info slide -->
                     @component('components.level-card')
-                    @slot('directsReferralsCount') {{ $referredUsersCount }} @endslot
-                    @slot('directsInvestmentSum') {{ $directsInvestmentSum }} @endslot
+                        @slot('directsReferralsCount')
+                            {{ $referredUsersCount }}
+                        @endslot
+                        @slot('directsInvestmentSum')
+                            {{ $directsInvestmentSum }}
+                        @endslot
 
-                    @slot('levelTwoReferralsCount') {{ $levelTwoReferralsCount }} @endslot
-                    @slot('levelTwoInvestmentSum') {{ $levelTwoInvestmentSum }} @endslot
+                        @slot('levelTwoReferralsCount')
+                            {{ $levelTwoReferralsCount }}
+                        @endslot
+                        @slot('levelTwoInvestmentSum')
+                            {{ $levelTwoInvestmentSum }}
+                        @endslot
 
-                    @slot('levelThreeReferralsCount') {{ $levelThreeReferralsCount }} @endslot
-                    @slot('levelThreeInvestmentSum') {{ $levelThreeInvestmentSum }} @endslot
+                        @slot('levelThreeReferralsCount')
+                            {{ $levelThreeReferralsCount }}
+                        @endslot
+                        @slot('levelThreeInvestmentSum')
+                            {{ $levelThreeInvestmentSum }}
+                        @endslot
 
-                    @slot('levelFourReferralsCount') {{ $levelFourReferralsCount }} @endslot
-                    @slot('levelFourInvestmentSum') {{ $levelFourInvestmentSum }} @endslot
+                        @slot('levelFourReferralsCount')
+                            {{ $levelFourReferralsCount }}
+                        @endslot
+                        @slot('levelFourInvestmentSum')
+                            {{ $levelFourInvestmentSum }}
+                        @endslot
 
-                    @slot('levelFiveReferralsCount') {{ $levelFiveReferralsCount }} @endslot
-                    @slot('levelFiveInvestmentSum') {{ $levelFiveInvestmentSum }} @endslot
+                        @slot('levelFiveReferralsCount')
+                            {{ $levelFiveReferralsCount }}
+                        @endslot
+                        @slot('levelFiveInvestmentSum')
+                            {{ $levelFiveInvestmentSum }}
+                        @endslot
 
-                    @slot('levelSixReferralsCount') {{ $levelSixReferralsCount }} @endslot
-                    @slot('levelSixInvestmentSum') {{ $levelSixInvestmentSum }} @endslot
+                        @slot('levelSixReferralsCount')
+                            {{ $levelSixReferralsCount }}
+                        @endslot
+                        @slot('levelSixInvestmentSum')
+                            {{ $levelSixInvestmentSum }}
+                        @endslot
 
-                    @slot('levelSevenReferralsCount') {{ $levelSevenReferralsCount }} @endslot
-                    @slot('levelSevenInvestmentSum') {{ $levelSevenInvestmentSum }} @endslot
+                        @slot('levelSevenReferralsCount')
+                            {{ $levelSevenReferralsCount }}
+                        @endslot
+                        @slot('levelSevenInvestmentSum')
+                            {{ $levelSevenInvestmentSum }}
+                        @endslot
 
-                    @slot('levelEightReferralsCount') {{ $levelEightReferralsCount }} @endslot
-                    @slot('levelEightInvestmentSum') {{ $levelEightInvestmentSum }} @endslot
+                        @slot('levelEightReferralsCount')
+                            {{ $levelEightReferralsCount }}
+                        @endslot
+                        @slot('levelEightInvestmentSum')
+                            {{ $levelEightInvestmentSum }}
+                        @endslot
 
-                    @slot('levelNineReferralsCount') {{ $levelNineReferralsCount }} @endslot
-                    @slot('levelNineInvestmentSum') {{ $levelNineInvestmentSum }} @endslot
+                        @slot('levelNineReferralsCount')
+                            {{ $levelNineReferralsCount }}
+                        @endslot
+                        @slot('levelNineInvestmentSum')
+                            {{ $levelNineInvestmentSum }}
+                        @endslot
 
-                    @slot('levelTenReferralsCount') {{ $levelTenReferralsCount }} @endslot
-                    @slot('levelTenInvestmentSum') {{ $levelTenInvestmentSum }} @endslot
+                        @slot('levelTenReferralsCount')
+                            {{ $levelTenReferralsCount }}
+                        @endslot
+                        @slot('levelTenInvestmentSum')
+                            {{ $levelTenInvestmentSum }}
+                        @endslot
 
-                    @slot('levelElevenReferralsCount') {{ $levelElevenReferralsCount }} @endslot
-                    @slot('levelElevenInvestmentSum') {{ $levelElevenInvestmentSum }} @endslot
+                        @slot('levelElevenReferralsCount')
+                            {{ $levelElevenReferralsCount }}
+                        @endslot
+                        @slot('levelElevenInvestmentSum')
+                            {{ $levelElevenInvestmentSum }}
+                        @endslot
 
-                    @slot('levelTwelveReferralsCount') {{ $levelTwelveReferralsCount }} @endslot
-                    @slot('levelTwelveInvestmentSum') {{ $levelTwelveInvestmentSum }} @endslot
+                        @slot('levelTwelveReferralsCount')
+                            {{ $levelTwelveReferralsCount }}
+                        @endslot
+                        @slot('levelTwelveInvestmentSum')
+                            {{ $levelTwelveInvestmentSum }}
+                        @endslot
                     @endcomponent
                     <!-- info slide end -->
 
@@ -197,7 +253,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
 
@@ -229,131 +284,139 @@
         @endif
 
         var options = {
-        series: stakeAmounts,
-        labels: labelsName,
-        chart: {
-            type: "donut",
-            height: 224,
-        },
+            series: stakeAmounts,
+            labels: labelsName,
+            chart: {
+                type: "donut",
+                height: 224,
+            },
 
-        plotOptions: {
-            pie: {
-            size: 100,
-            offsetX: 0,
-            offsetY: 0,
-            donut: {
-                size: "70%",
+            plotOptions: {
+                pie: {
+                    size: 100,
+                    offsetX: 0,
+                    offsetY: 0,
+                    donut: {
+                        size: "70%",
+                        labels: {
+                            show: true,
+                            name: {
+                                show: true,
+                                fontSize: "18px",
+                                offsetY: -5,
+                            },
+                            value: {
+                                show: true,
+                                fontSize: "20px",
+                                color: "#343a40",
+                                fontWeight: 500,
+                                offsetY: 5,
+                                formatter: function(val) {
+                                    return "Du" + val;
+                                },
+                            },
+                            total: {
+                                show: true,
+                                fontSize: "12px",
+                                label: "Total Stake",
+                                color: "#9599ad",
+                                fontWeight: 500,
+                                formatter: function(w) {
+                                    return (
+                                        w.globals.seriesTotals.reduce(function(a, b) {
+                                            return a + b;
+                                        }, 0).toLocaleString()
+                                    );
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            legend: {
+                show: false,
+            },
+            yaxis: {
                 labels: {
-                show: true,
-                name: {
-                    show: true,
-                    fontSize: "18px",
-                    offsetY: -5,
-                },
-                value: {
-                    show: true,
-                    fontSize: "20px",
-                    color: "#343a40",
-                    fontWeight: 500,
-                    offsetY: 5,
-                    formatter: function (val) {
-                    return "Du" + val;
+                    formatter: function(value) {
+                        return "DU" + value;
                     },
                 },
-                total: {
-                    show: true,
-                    fontSize: "12px",
-                    label: "Total Stake",
-                    color: "#9599ad",
-                    fontWeight: 500,
-                    formatter: function (w) {
-                    return (
-                        w.globals.seriesTotals.reduce(function (a, b) {
-                        return a + b;
-                        }, 0).toLocaleString()
-                    );
-                    },
-                },
-                },
             },
+            stroke: {
+                lineCap: "round",
+                width: 2,
             },
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        legend: {
-            show: false,
-        },
-        yaxis: {
-            labels: {
-            formatter: function (value) {
-                return "DU" + value;
-            },
-            },
-        },
-        stroke: {
-            lineCap: "round",
-            width: 2,
-        },
-        colors: donutchartportfolioColors,
+            colors: donutchartportfolioColors,
         };
         var chart = new ApexCharts(document.querySelector("#portfolio_donut_charts"), options);
         chart.render();
     </script>
     <script>
         // Distributed Columns Charts
-        var chartColumnDistributedColors = ['#3577f1', '#405189', '#6559cc', '#f672a7', '#f06548', '#f1963b', '#f7b84b', '#0ab39c', '#02a8b5', '#299cdb', '#f672a7', '#6559cc']; // Random colors
+        var chartColumnDistributedColors = ['#3577f1', '#405189', '#6559cc', '#f672a7', '#f06548', '#f1963b', '#f7b84b',
+            '#0ab39c', '#02a8b5', '#299cdb', '#f672a7', '#6559cc'
+        ]; // Random colors
         var options = {
-        series: [{
-            data: [{{ $referredUsersCount }}, {{ $levelTwoReferralsCount }}, {{ $levelThreeReferralsCount }}, {{ $levelFourReferralsCount }}, {{ $levelFiveReferralsCount }}, {{ $levelSixReferralsCount }}, {{ $levelSevenReferralsCount }}, {{ $levelEightReferralsCount }}, {{ $levelNineReferralsCount }}, {{ $levelTenReferralsCount }}, {{ $levelElevenReferralsCount }}, {{ $levelTwelveReferralsCount }}],
-        }],
-        chart: {
-            height: 250,
-            type: 'bar',
-            events: {
-            click: function (chart, w, e) {
-                // console.log(chart, w, e)
-            }
+            series: [{
+                data: [{{ $referredUsersCount }}, {{ $levelTwoReferralsCount }},
+                    {{ $levelThreeReferralsCount }}, {{ $levelFourReferralsCount }},
+                    {{ $levelFiveReferralsCount }}, {{ $levelSixReferralsCount }},
+                    {{ $levelSevenReferralsCount }}, {{ $levelEightReferralsCount }},
+                    {{ $levelNineReferralsCount }}, {{ $levelTenReferralsCount }},
+                    {{ $levelElevenReferralsCount }}, {{ $levelTwelveReferralsCount }}
+                ],
+            }],
+            chart: {
+                height: 250,
+                type: 'bar',
+                events: {
+                    click: function(chart, w, e) {
+                        // console.log(chart, w, e)
+                    }
+                },
+                toolbar: {
+                    show: false // Disable toolbar
+                }
             },
-            toolbar: {
-            show: false // Disable toolbar
+            colors: chartColumnDistributedColors,
+            plotOptions: {
+                bar: {
+                    columnWidth: '50%',
+                    distributed: true,
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            legend: {
+                show: false
+            },
+            xaxis: {
+                categories: [
+                    ['L1'],
+                    ['L2'],
+                    ['L3'],
+                    ['L4'],
+                    ['L5'],
+                    ['L6'],
+                    ['L7'],
+                    ['L8'],
+                    ['L9'],
+                    ['L10'],
+                    ['L11'],
+                    ['L12'],
+                ],
+                labels: {
+                    style: {
+                        colors: chartColumnDistributedColors,
+                        fontSize: '12px'
+                    }
+                }
             }
-        },
-        colors: chartColumnDistributedColors,
-        plotOptions: {
-            bar: {
-            columnWidth: '50%',
-            distributed: true,
-            }
-        },
-        dataLabels: {
-            enabled: false
-        },
-        legend: {
-            show: false
-        },
-        xaxis: {
-            categories: [
-            ['L1'],
-            ['L2'],
-            ['L3'],
-            ['L4'],
-            ['L5'],
-            ['L6'],
-            ['L7'],
-            ['L8'],
-            ['L9'],
-            ['L10'],
-            ['L11'],
-            ['L12'],
-            ],
-            labels: {
-            style: {
-                colors: chartColumnDistributedColors,
-                fontSize: '12px'
-            }
-            }
-        }
         };
 
         var chart = new ApexCharts(document.querySelector("#column_distributed"), options);

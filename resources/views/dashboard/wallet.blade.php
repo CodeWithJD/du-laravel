@@ -13,17 +13,18 @@
         {{-- Balance blocks --}}
         <div class="wallet row m-0 p-0">
             <div class="col-lg-6 mt-2">
-                <div class="card box-effect-blue">
+                <div class="card box-effect-blue border-primary border-1">
                     <div class="card-body">
                         <div>
-                            <span class="display-6 text-primary fs-5">Account Balance</span>
+                            <span class="display-6 text-primary fs-5 fw-bold">Available Balance</span>
                         </div>
-                        <div>
-                            <span class="display-1 text-primary"><span class="counter-value"
-                                    data-target="{{ $userDetails->available_balance }}">0</span><span
-                                    class="fs-1">Du</span></span>
+                        <div class="mt-2">
+                            <span class="display-5 text-primary"><span class="counter-value"
+                                    data-target="{{ $userDetails->available_balance }}">0</span>
+                                {{-- <span class="fs-1"> Du</span> --}}
+                            </span>
                         </div>
-                        <div class="d-flex gap-2">
+                        <div class="d-flex gap-2 mt-2">
                             <a class="btn btn-primary bg-gradient waves-effect waves-light disabled"
                                 href="">Deposit</a>
                             <a class="btn btn-primary bg-gradient waves-effect waves-light" data-bs-toggle="modal"
@@ -33,26 +34,52 @@
                 </div>
             </div>
             <div class="col-lg-6 mt-2">
-                <div class="card box-effect-pink">
+                <div class="card box-effect-blue border-primary border-1">
                     <div class="card-body">
-                        <div>
-                            <span class="display-6 text-primary fs-5">Rewards Balance</span>
+                        <div class="row">
+                            <div class="col-4">
+                                <div>
+                                    <span class="display-5 text-primary fs-5 fw-bold">Reward Balance</span>
+                                </div>
+                                <div class="my-2">
+                                    <span class="text-primary display-5"><span class="counter-value"
+                                            data-target="{{ $userDetails->reward_balance }}">0</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div>
+                                    <span class="display-5 text-primary fs-5 fw-bold">Direct Rewards</span>
+                                </div>
+                                <div class="my-2">
+                                    <span class="text-primary display-5"><span class="counter-value"
+                                            data-target="0">0</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div>
+                                    <span class="display-5 text-primary fs-5 fw-bold">Team Rewards</span>
+                                </div>
+                                <div class="my-2">
+                                    <span class="text-primary display-5"><span class="counter-value"
+                                            data-target="0">0</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div>
+                                <a type="button" class="btn btn-primary btn-load">
+                                    <span class="d-flex align-items-center">
+                                        <span class="spinner-grow flex-shrink-0" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </span>
+                                        <span class="flex-grow-1 ms-2">
+                                            Transfer to Balance
+                                        </span>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
-                        <div>
-                            <span class="text-pink display-1"><span class="counter-value"
-                                    data-target="{{ $userDetails->reward_balance }}">0</span><span
-                                    class="fs-1">Du</span></span>
-                        </div>
-                        <a type="button" class="btn btn-pink btn-load">
-                            <span class="d-flex align-items-center">
-                                <span class="spinner-grow flex-shrink-0" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </span>
-                                <span class="flex-grow-1 ms-2">
-                                    Transfer to Balance
-                                </span>
-                            </span>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -91,19 +118,19 @@
         <!-- Displaying transactions -->
         <div class="transactions row p-0 m-0">
             <div class="col-lg-12 mt-3">
-                <div class="card">
+                <div class="card border-primary border-1">
                     <!-- end card header -->
                     <div class="card-body p-0 m-0">
                         <div class="table-responsive">
                             <table class="table align-middle" id="transactionsTable">
-                                <thead class="bg-primary-subtle">
+                                <thead class="bg-primary">
                                     <tr>
-                                        <th class="type-head">Type</th>
-                                        <th class="amout-head">Amount</th>
-                                        <th class=".status-head">Status</th>
-                                        <th class="source-head">Source</th>
-                                        <th class="date-head">Date</th>
-                                        <th class="details-head">Transaction Details</th>
+                                        <th class="type-head text-white">Type</th>
+                                        <th class="amout-head text-white">Amount</th>
+                                        <th class=".status-head text-white">Status</th>
+                                        <th class="source-head text-white">Source</th>
+                                        <th class="date-head text-white">Date</th>
+                                        <th class="details-head text-white">Transaction Details</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -118,7 +145,7 @@
                                             </td>
                                             <td>
                                                 <span class="amount">{{ number_format($transaction->amount, 2) }}</span>
-                                                <span class="text-pink small">Du</span>
+                                                <span class="text-primary small fw-bold">Du</span>
                                             </td>
                                             <td>
                                                 @if ($transaction->status == 'Complete')
@@ -129,7 +156,7 @@
                                                     <span class="text-danger">{{ $transaction->status }}</span>
                                                 @endif
                                             </td>
-                                            <td class="type">{{ $transaction->transaction_source }}</td>
+                                            <td class="type text-primary">{{ $transaction->transaction_source }}</td>
                                             <td>{{ $transaction->timestamp }}</td>
                                             <td>{{ $transaction->description }}</td>
 
@@ -138,9 +165,9 @@
                                 </tbody>
                             </table>
                             {{-- Pagination Controls --}}
-                        <div class="d-flex justify-content-end">
-                            {{ $transactions->links() }}
-                        </div>
+                            <div class="d-flex justify-content-end">
+                                {{ $transactions->links() }}
+                            </div>
                             <div style="display: none">
                                 <div class="text-center">
                                     <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"

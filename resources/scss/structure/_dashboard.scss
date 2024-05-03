@@ -1,6 +1,7 @@
 .wraper {
     min-height: 100vh;
     min-width: 100vw;
+    max-width: 100vw;
 
     .right-content {
         min-height: 100vh !important;
@@ -80,12 +81,13 @@
 
     .referral-box {
         height: 50px;
+        margin-top: 30px;
 
 
         // For mobile devices with maximum width 767px
         @media only screen and (max-width: 767px) {
             margin-top: 50px;
-            margin-bottom: 50px;
+            margin-bottom: 90px;
         }
 
         .row {
