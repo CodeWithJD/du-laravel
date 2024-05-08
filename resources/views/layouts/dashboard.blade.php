@@ -14,29 +14,29 @@
             <!-- Sidebar End -->
 
             <!-- Sidebar mobile -->
-            <div class="mobile-menu bg-white fixed-bottom fixed border-top border-primary">
+            <div class="mobile-menu bg-primary fixed-bottom fixed border-top border-white">
                 <div class="menu d-flex justify-content-center gap-5 border-1 border-primary">
                     <a href="{{ route('dashboard') }}">
-                        <div class="menu-item text-center {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                            <i class="ri-dashboard-line fs-1 text-primary"></i>
-                            <p class="text-primary">Dashboard</p>
+                        <div class="menu-item text-center bg-primary {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                            <i class="ri-dashboard-line fs-1 text-white"></i>
+                            <p class="text-white">Dashboard</p>
                         </div>
                     </a>
                     <a href="{{ route('wallet.index') }}">
-                        <div class="menu-item text-center {{ request()->routeIs('wallet.index') ? 'active' : '' }}">
-                            <i class="text-primary ri-bank-line fs-1"></i>
-                            <p class="text-primary">Wallet</p>
+                        <div class="menu-item text-center bg-primary {{ request()->routeIs('wallet.index') ? 'active' : '' }}">
+                            <i class="text-white ri-bank-line fs-1"></i>
+                            <p class="text-white">Wallet</p>
                         </div>
                     </a>
                     <a href="{{ route('investments.index') }}">
-                        <div class="menu-item text-center {{ request()->routeIs('investments.*') ? 'active' : '' }}">
-                            <i class="text-primary ri-cash-line fs-1"></i>
-                            <p class="text-primary">Investments</p>
+                        <div class="menu-item text-center bg-primary {{ request()->routeIs('investments.*') ? 'active' : '' }}">
+                            <i class="text-white ri-cash-line fs-1"></i>
+                            <p class="text-white">Investments</p>
                         </div>
                     </a>
-                    <div class="menu-item text-center @class(['active' => request()->routeIs('profile')])">
-                        <i class="text-primary ri-user-line fs-1"></i>
-                        <p class="text-primary">Profile</p>
+                    <div class="menu-item text-center bg-primary @class(['active' => request()->routeIs('profile')])">
+                        <i class="text-white ri-user-line fs-1"></i>
+                        <p class="text-white">Profile</p>
                     </div>
                 </div>
             </div>

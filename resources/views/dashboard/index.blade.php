@@ -5,9 +5,6 @@
 @section('page')
     @lang('Welcome to Du Network')
 @endsection
-{{-- @section('css')
-    <link href="{{ URL::asset('build/libs/aos/aos.css') }}" rel="stylesheet">
-@endsection --}}
 
 @section('content')
     <div class="dashboard row py-5">
@@ -248,7 +245,7 @@
             <div class="row">
                 <div class="col-lg-2 referral-title">Referral Link</div>
                 <div class="col-lg-6 referral-link"><input type="text" class="form-control me-3" id="copyInput"
-                        value="{{ config('app.url') }}:3000/register?ref={{ $invite_code }}"></div>
+                        value="{{ config('app.url') }}/register?ref={{ $invite_code }}"></div>
                 <div class="col-lg-2 referral-button"><button class="btn btn-primary" onclick="copyText(this)">Copy</button>
                 </div>
             </div>
