@@ -34,10 +34,12 @@
                             <p class="text-white">Investments</p>
                         </div>
                     </a>
-                    <div class="menu-item text-center bg-primary @class(['active' => request()->routeIs('profile')])">
-                        <i class="text-white ri-user-line fs-1"></i>
-                        <p class="text-white">Profile</p>
-                    </div>
+                    <a href="{{ route('swap.index') }}">
+                        <div class="menu-item text-center bg-primary {{ request()->routeIs('swap.*') ? 'active' : '' }}">
+                            <i class="text-white ri-exchange-box-line fs-1"></i>
+                            <p class="text-white">My Swap</p>
+                        </div>
+                    </a>
                 </div>
             </div>
 
@@ -49,10 +51,11 @@
                             <span class="welcome-title d-none d-md-block">@yield('page')</span>
                             <p class="welcome-massage p-0 mt-1">Hello, <span class="text-primary">{{ $name }}</span></p>
                         </div>
-                        <div class="align-content-center">
+                        <div class="d-flex align-content-center">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="btn btn-danger">Logout</button>
+                                <a href=" {{ route('profile.index') }} " class="btn btn-primary btn-sm">Profile</a>
+                                <button type="submit" class="btn btn-danger btn-sm">Logout</button>
                             </form>
                         </div>
                     </div>

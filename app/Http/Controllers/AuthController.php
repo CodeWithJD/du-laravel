@@ -88,7 +88,6 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-
     public function login(Request $request)
     {
         // Validate the user input
@@ -99,24 +98,37 @@ class AuthController extends Controller
 
         // Attempt to log in the user
         if (Auth::attempt($credentials)) {
-            // Capture device details
-            $userAgent = $request->header('User-Agent');
-            $ipAddress = $request->ip();
+            $user = Auth::user();
+            $userDetails = UserDetails::where('user_id', $user->id)->first();
 
-            // Update user details with last login time and device info
-            UserDetails::where('user_id', Auth::id())->update([
-                'last_login' => now(),
-                'last_login_device' => $userAgent,
-                'last_login_ip' => $ipAddress,
-            ]);
+            // Check account status
+            if ($userDetails->account_status == 'Active') {
+                // Capture device details
+                $userAgent = $request->header('User-Agent');
+                $ipAddress = $request->ip();
 
-            // Redirect to dashboard
-            return redirect('/dashboard');
+                // Update user details with last login time and device info
+                $userDetails->update([
+                    'last_login' => now(),
+                    'last_login_device' => $userAgent,
+                    'last_login_ip' => $ipAddress,
+                ]);
+
+                // Redirect to dashboard
+                return redirect('/dashboard');
+            } elseif ($userDetails->account_status == 'Review') {
+                Auth::logout(); // Ensure the user is not authenticated
+                return back()->withErrors(['email' => 'Your account is currently under review. Please contact our support team at support@dusolutions.io for further assistance.']);
+            } else if ($userDetails->account_status == 'Blocked') {
+                Auth::logout(); // Ensure the user is not authenticated
+                return back()->withErrors(['email' => 'Your account has been blocked. Please contact our support team at support@dusolutions.io to resolve this issue.']);
+            }
         }
 
-        // If login fails, redirect back with error
-        return back()->withErrors(['email' => 'Invalid credentials']);
+        // If login fails or the status is not suitable, redirect back with error
+        return back()->withErrors(['email' => 'Invalid credentials or account status.']);
     }
+
 
     public function logout(Request $request)
     {

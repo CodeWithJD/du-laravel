@@ -38,7 +38,7 @@
                             this wallet address</p>
                         <p class="m-0">Address:</p>
                         <p class="m-0 mt-1 mb-1"><span
-                                class="text-primary fw-bold">0xEfc131a7BFE4Cf2f1b212EB843c078E8B77806Db</span></p>
+                                class="text-primary fw-bold">0x2325f60c4a7408aBbc4047530FE7dEafafB9B607</span></p>
                         <p>
                             <span class="text-primary fw-bold">Network :
                                 @if ($currency == 'usdt')
@@ -49,7 +49,7 @@
                             </span>
                         </p>
                         <br>
-                        <img src="{{ URL::asset('assets/images/swap/wallet.png') }}" alt="">
+                        <img src="{{ URL::asset('assets/images/swap/2.png') }}" alt="">
                         <hr>
                         <p class="h3 text-info m-2">STEP 02</p>
                         <form action="{{ route('swap.confim') }}" method="GET">
