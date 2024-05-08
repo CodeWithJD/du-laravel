@@ -11,7 +11,7 @@
         <!--MyStake-->
         <div class="col-xxl-3 mb-3">
             <div class="card">
-                <div class="card-header bg-primary border-1 d-flex align-items-center">
+                <div class="card-header bg-primary d-flex align-items-center">
                     <span class="card-title m-0">My Staking</span>
                 </div><!-- end cardheader -->
                 <div class="card-body boxStaking">
@@ -19,20 +19,20 @@
                         class="apex-charts" dir="ltr">
                     </div>
 
-                    <ul class="list-group list-group-flush mb-0 mt-3 p-2">
+                    <ul class="list-group list-group-flush mb-0 mt-3 p-2 bg-body rounded-3">
                         <ul class="list-group list-group-flush mb-0 mt-3 p-2">
                             @if ($stakingData->isNotEmpty())
                                 @foreach ($stakingData as $staking)
-                                    <li class="list-group-item px-0">
+                                    <li class="list-group-item px-0 bg-body">
                                         <div class="d-flex">
                                             <div class="ms-2 flex-grow-1">
-                                                <h6 class="mb-1">Stake {{ $staking['stake_no'] }}</h6>
-                                                <p class="fs-12 mb-0 text-muted">Remaining Days</p>
+                                                <h6 class="mb-1 text-primary">Stake {{ $staking['stake_no'] }}</h6>
+                                                <p class="fs-12 mb-0 text-primary">Remaining Days</p>
                                             </div>
                                             <div class="text-end">
-                                                <h6 class="mb-1">{{ number_format($staking['stake_amount'], 2) }} <span
+                                                <h6 class="mb-1 fw-bold text-primary fw-bold">{{ number_format($staking['stake_amount'], 2) }} <span
                                                         class="small">DU</span></h6>
-                                                <p class="text-success fs-12 mb-0">
+                                                <p class="text-primary fs-12 mb-0">
                                                     {{ number_format($staking['roaming_day'], 0) }} Days</p>
                                             </div>
                                         </div>
@@ -52,12 +52,13 @@
                 </div><!-- end card body -->
             </div><!-- end-->
         </div>
+
         <!--MyStake End-->
         <div class="col-xxl-9 order-xxl-0">
             <div class="d-flex flex-column h-100">
                 <div class="row h-100">
-                    <div class="col-lg-4 col-md-6 mb-3">
-                        <div class="card">
+                    <div class="col-lg-4 col-md-6 mb-2">
+                        <div class="card shadow-lg">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div class="avatar-sm flex-shrink-0">
@@ -82,8 +83,8 @@
                             </div><!-- end card body -->
                         </div><!-- end card -->
                     </div><!-- end col -->
-                    <div class="col-lg-4 col-md-6 mb-3">
-                        <div class="card">
+                    <div class="col-lg-4 col-md-6 mb-2">
+                        <div class="card shadow-lg">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div class="avatar-sm flex-shrink-0">
@@ -107,9 +108,9 @@
                             </div><!-- end card body -->
                         </div><!-- end card -->
                     </div><!-- end col -->
-                    <div class="col-lg-4 col-md-6 mb-3">
+                    <div class="col-lg-4 col-md-6 mb-2">
                         <a href="{{ route('directs') }}">
-                            <div class="card">
+                            <div class="card shadow-lg">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
                                         <div class="avatar-sm flex-shrink-0">
@@ -225,7 +226,7 @@
                     <!-- info slide end -->
 
                     <!--Chart Start-->
-                    <div class="col-xl-12">
+                    <div class="col-xl-12 mt-2">
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title mb-0 text-primary">Referral Level Chart</h4>
@@ -262,7 +263,8 @@
     <script src="{{ URL::asset('assets/js/pages/dashboard.js') }}"></script>
     <script src="{{ URL::asset('assets/js/swiper.js') }}"></script>
     <script>
-        var predefinedColors = ["#405189", "#f672a7", "#f1963b", "#0ab39c", "#ff5733", "#33ff57", "#3357ff", "#ff33e6"];
+        var predefinedColors = ["#405189", "#f672a7", "#f1963b", "#0ab39c", "#ff5733", "#33ff57", "#3357ff", "#ff33e6", '#3577f1', '#405189', '#6559cc', '#f672a7', '#f06548', '#f1963b', '#f7b84b',
+            '#0ab39c', '#02a8b5', '#299cdb', '#f672a7', '#6559cc'];
         var donutchartportfolioColors = [];
         var stakeAmounts = [];
         var labelsName = [];

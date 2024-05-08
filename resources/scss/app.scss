@@ -7,6 +7,7 @@
 @import 'structure/wallet';
 @import 'structure/transfer';
 @import 'structure/investments';
+@import 'structure/swap';
 
 
 
@@ -30,6 +31,12 @@
     background-color: $pink;
 }
 
+/* WebKit */
+::-webkit-scrollbar {
+    display: none;
+    scrollbar-width: none;
+}
+
 .mobile-menu {
     height: 80px;
     display: none;
@@ -45,6 +52,12 @@
         &.active {
             border-top: 5px solid $orange;
         }
+    }
+}
+.bg-mu {
+    background-color: #eff2f7;
+    &:focus {
+        background-color: #eff2f7;
     }
 }
 

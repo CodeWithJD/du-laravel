@@ -70,7 +70,7 @@ $indigo:     #030346;
 $purple:     #6559cc;
 $pink:       #f672a7;
 $red:        #f06548;
-$orange:     #f1963b;
+$orange:     #ea8c2f;
 $yellow:     #f7b84b;
 $green:      #0ab39c;
 $teal:       #02a8b5;
@@ -461,8 +461,10 @@ $position-values: (
 // Body
 //
 // Settings for the `<body>` element.
+// $body-bg:                   #f3f6f9;
 
-$body-bg:                   #f3f6f9;
+
+$body-bg:                   #e4f0fb;
 $body-color:                $gray-900;
 $body-text-align:           null;
 
@@ -478,7 +480,7 @@ $body-emphasis-color:       $gray-900;
 //
 // Style anchor elements.
 
-$link-color:                              $body-bg;
+$link-color:                              #7f7c8f;
 $link-decoration:                         none;
 $link-shade-percentage:                   20%;
 $link-hover-color:                        $primary;

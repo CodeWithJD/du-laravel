@@ -1,14 +1,10 @@
 .wallet {
-    .box-effect-pink {
-        border-bottom: 3px solid $pink;
-        box-shadow: inset 0 0 1px rgba(2, 4, 68, 0.4), 0 0 9px 4px #14027c1a;
-        border-radius: 10px;
-    }
 
     .box-effect-blue {
         border-bottom: 3px solid $indigo;
         box-shadow: inset 0 0 1px rgba(2, 4, 68, 0.4), 0 0 9px 4px #14027c1a;
         border-radius: 10px;
+        height: 170px;
     }
 
     .modal-body {
@@ -26,60 +22,61 @@
             }
         }
     }
-}
+    .transactions {
+        .card-header {
+            background-color: $indigo;
 
-.transactions {
-    .card-header {
-        background-color: $indigo;
+            .card-title {
+                font-size: 20px;
+                color: $white;
+                font-family: $rubik;
+                font-weight: 300;
+            }
+        }
 
-        .card-title {
-            font-size: 20px;
-            color: $white;
+        tr {
+            height: 10px !important;
+            white-space: nowrap;
+        }
+
+        td {
+            white-space: nowrap;
+        }
+
+        .type-head,
+        .amout-head,
+        .status-head {
+            min-width: 100px;
+        }
+
+        .source-head {
+            min-width: 115px;
+        }
+
+        .date-head {
+            min-width: 160px;
+        }
+
+        .date-head {
+            min-width: 160px;
+        }
+
+        .amount {
             font-family: $rubik;
-            font-weight: 300;
+            font-weight: 600;
+            color: $indigo;
+        }
+
+        .withdraw {
+            background-color: #eecccc;
+            color: #690303;
+        }
+
+        .deposit {
+            background-color: #afdcba;
+            color: #042508;
         }
     }
-
-    tr {
-        height: 10px !important;
-        white-space: nowrap;
-    }
-
-    td {
-        white-space: nowrap;
-    }
-
-    .type-head,
-    .amout-head,
-    .status-head {
-        min-width: 100px;
-    }
-
-    .source-head {
-        min-width: 115px;
-    }
-
-    .date-head {
-        min-width: 160px;
-    }
-
-    .date-head {
-        min-width: 160px;
-    }
-
-    .amount {
-        font-family: $rubik;
-        font-weight: 600;
-        color: $indigo;
-    }
-
-    .withdraw {
-        background-color: #eecccc;
-        color: #690303;
-    }
-
-    .deposit {
-        background-color: #afdcba;
-        color: #042508;
-    }
 }
+
+

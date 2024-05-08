@@ -1,5 +1,5 @@
-<div class="row slider-box">
-    <div class="col-lg-12">
+<div class="row slider-box m-0 p-0">
+    <div class="col-lg-12 m-0 ">
         <div class="swiper cryptoSlider">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -16,7 +16,7 @@
                                             class="d-flex align-items-center justify-content-between flex-column h-100">
                                             <div class="col">
                                                 <h6 class="m-0 fs-14">Level 01</h6>
-                                                <p class="fs-13 fw-medium mb-0 text-pink">{{ $directsReferralsCount }}
+                                                <p class="fs-13 fw-medium mb-0 text-danger">{{ $directsReferralsCount }}
                                                     Users</p>
                                                 <p class="fs-13 fw-medium mb-0 text-success">{{ $directsInvestmentSum }}
                                                 </p>
@@ -43,7 +43,7 @@
                                             class="d-flex align-items-center justify-content-between flex-column h-100">
                                             <div class="col">
                                                 <h6 class="m-0 fs-14">Level 02</h6>
-                                                <p class="fs-13 fw-medium mb-0 text-pink">{{ $levelTwoReferralsCount }}
+                                                <p class="fs-13 fw-medium mb-0 text-danger">{{ $levelTwoReferralsCount }}
                                                     Users</p>
                                                 <p class="fs-13 fw-medium mb-0 text-success">
                                                     {{ $levelTwoInvestmentSum }}
@@ -72,7 +72,7 @@
                                             class="d-flex align-items-center justify-content-between flex-column h-100">
                                             <div class="col">
                                                 <h6 class="m-0 fs-14">Level 03</h6>
-                                                <p class="fs-13 fw-medium mb-0 text-pink">
+                                                <p class="fs-13 fw-medium mb-0 text-danger">
                                                     {{ $levelThreeReferralsCount }}
                                                     Users</p>
                                                 <p class="fs-13 fw-medium mb-0 text-success">
@@ -101,7 +101,7 @@
                                             class="d-flex align-items-center justify-content-between flex-column h-100">
                                             <div class="col">
                                                 <h6 class="m-0 fs-14">Level 04</h6>
-                                                <p class="fs-13 fw-medium mb-0 text-pink">
+                                                <p class="fs-13 fw-medium mb-0 text-danger">
                                                     {{ $levelFourReferralsCount }}
                                                     Users</p>
                                                 <p class="fs-13 fw-medium mb-0 text-success">
@@ -130,7 +130,7 @@
                                             class="d-flex align-items-center justify-content-between flex-column h-100">
                                             <div class="col">
                                                 <h6 class="m-0 fs-14">Level 05</h6>
-                                                <p class="fs-13 fw-medium mb-0 text-pink">
+                                                <p class="fs-13 fw-medium mb-0 text-danger">
                                                     {{ $levelFiveReferralsCount }}
                                                     Users</p>
                                                 <p class="fs-13 fw-medium mb-0 text-success">
@@ -159,7 +159,7 @@
                                             class="d-flex align-items-center justify-content-between flex-column h-100">
                                             <div class="col">
                                                 <h6 class="m-0 fs-14">Level 06</h6>
-                                                <p class="fs-13 fw-medium mb-0 text-pink">{{ $levelSixReferralsCount }}
+                                                <p class="fs-13 fw-medium mb-0 text-danger">{{ $levelSixReferralsCount }}
                                                     Users</p>
                                                 <p class="fs-13 fw-medium mb-0 text-success">
                                                     {{ $levelSixInvestmentSum }}
@@ -187,7 +187,7 @@
                                             class="d-flex align-items-center justify-content-between flex-column h-100">
                                             <div class="col">
                                                 <h6 class="m-0 fs-14">Level 07</h6>
-                                                <p class="fs-13 fw-medium mb-0 text-pink">
+                                                <p class="fs-13 fw-medium mb-0 text-danger">
                                                     {{ $levelSevenReferralsCount }}
                                                     Users</p>
                                                 <p class="fs-13 fw-medium mb-0 text-success">
@@ -215,7 +215,7 @@
                                             class="d-flex align-items-center justify-content-between flex-column h-100">
                                             <div class="col">
                                                 <h6 class="m-0 fs-14">Level 08</h6>
-                                                <p class="fs-13 fw-medium mb-0 text-pink">
+                                                <p class="fs-13 fw-medium mb-0 text-danger">
                                                     {{ $levelEightReferralsCount }}
                                                     Users</p>
                                                 <p class="fs-13 fw-medium mb-0 text-success">
@@ -243,7 +243,7 @@
                                             class="d-flex align-items-center justify-content-between flex-column h-100">
                                             <div class="col">
                                                 <h6 class="m-0 fs-14">Level 09</h6>
-                                                <p class="fs-13 fw-medium mb-0 text-pink">
+                                                <p class="fs-13 fw-medium mb-0 text-danger">
                                                     {{ $levelNineReferralsCount }}
                                                     Users</p>
                                                 <p class="fs-13 fw-medium mb-0 text-success">
@@ -272,7 +272,7 @@
                                             class="d-flex align-items-center justify-content-between flex-column h-100">
                                             <div class="col">
                                                 <h6 class="m-0 fs-14">Level 10</h6>
-                                                <p class="fs-13 fw-medium mb-0 text-pink">
+                                                <p class="fs-13 fw-medium mb-0 text-danger">
                                                     {{ $levelTenReferralsCount }}
                                                     Users</p>
                                                 <p class="fs-13 fw-medium mb-0 text-success">
@@ -301,7 +301,7 @@
                                             class="d-flex align-items-center justify-content-between flex-column h-100">
                                             <div class="col">
                                                 <h6 class="m-0 fs-14">Level 11</h6>
-                                                <p class="fs-13 fw-medium mb-0 text-pink">
+                                                <p class="fs-13 fw-medium mb-0 text-danger">
                                                     {{ $levelElevenReferralsCount }}
                                                     Users</p>
                                                 <p class="fs-13 fw-medium mb-0 text-success">
@@ -329,7 +329,7 @@
                                             class="d-flex align-items-center justify-content-between flex-column h-100">
                                             <div class="col">
                                                 <h6 class="m-0 fs-14">Level 12</h6>
-                                                <p class="fs-13 fw-medium mb-0 text-pink">
+                                                <p class="fs-13 fw-medium mb-0 text-danger">
                                                     {{ $levelTwelveReferralsCount }}
                                                     Users</p>
                                                 <p class="fs-13 fw-medium mb-0 text-success">

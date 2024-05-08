@@ -1,22 +1,28 @@
-.left-bar {
-    ul li {
-        margin-top: 10px;
+.left-content {
+    .left-bar {
+        .nav-item {
+            padding-left: 20px;
 
-        a {
-            font-size: 20px;
-            font-family: $rubik;
-            font-weight: 200;
-            min-width: 100%;
+            &:hover,
+            &.active {
+                background-color: $body;
+                color: $indigo;
+                font-weight: 400;
 
-            &:hover {
-                color: $pink;
+                span {
+                    color: $indigo;
+                }
+                i {
+                    color: $indigo !important;
+                }
+            }
+
+            span {
+                font-size: 20px;
+                font-family: $rubik;
+                font-weight: 200;
+                min-width: 100%;
             }
         }
     }
-}
-
-.logo {
-    width: 100px;
-    position: absolute;
-    margin-top: 75px;
 }

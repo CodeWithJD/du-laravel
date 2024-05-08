@@ -43,13 +43,11 @@
 
             <!-- MainContents Start -->
             <div class="col-md-10 right-content">
-                <div class="right-item bg-body h-100 rounded-5 p-4">
+                <div class="right-item bg-body rounded-5 p-4">
                     <div class="header d-flex justify-content-between">
                         <div>
                             <span class="welcome-title d-none d-md-block">@yield('page')</span>
-                            <p class="welcome-massage p-0 mt-1">Hello, <span class="text-info">{{ $name }}</span> <span
-                                    class="d-none d-md-block">You
-                                    can manage your DU Network and access all analyses from this dashboard.</span></p>
+                            <p class="welcome-massage p-0 mt-1">Hello, <span class="text-primary">{{ $name }}</span></p>
                         </div>
                         <div class="align-content-center">
                             <form method="POST" action="{{ route('logout') }}">

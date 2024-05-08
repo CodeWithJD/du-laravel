@@ -1,0 +1,33 @@
+.swap-box {
+    border: 1px solid $indigo;
+    padding: 1.5rem;
+    letter-spacing: 0.06em;
+    border-radius: 1rem;
+    transition: all 0.3s;
+    color: $indigo;
+    font-family: "Rubik", sans-serif;
+    overflow: auto;
+    font-family: "Rubik", sans-serif;
+    background-color: white;
+
+    .form-control {
+        height: 80px;
+        color: $indigo;
+        font-family: "Rubik", sans-serif;
+        font-weight: 200;
+        font-size: 44px;
+        background-color: $body;
+        border: 1px solid $indigo;
+    }
+
+    /* Up or down buttons ko chhupane ke liye */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        opacity: 0;
+        /* Chhupane ke liye */
+        position: absolute;
+        /* Position ko adjust karne ke liye */
+        height: auto;
+        /* Height ko set karne ke liye */
+    }
+}

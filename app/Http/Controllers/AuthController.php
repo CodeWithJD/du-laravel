@@ -91,7 +91,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        // Validate the user input here
+        // Validate the user input
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required|string',
@@ -99,13 +99,23 @@ class AuthController extends Controller
 
         // Attempt to log in the user
         if (Auth::attempt($credentials)) {
-            // Authentication successful, redirect to dashboard
+            // Capture device details
+            $userAgent = $request->header('User-Agent');
+            $ipAddress = $request->ip();
+
+            // Update user details with last login time and device info
+            UserDetails::where('user_id', Auth::id())->update([
+                'last_login' => now(),
+                'last_login_device' => $userAgent,
+                'last_login_ip' => $ipAddress,
+            ]);
+
+            // Redirect to dashboard
             return redirect('/dashboard');
         }
 
-        // Redirect the user to the desired page
+        // If login fails, redirect back with error
         return back()->withErrors(['email' => 'Invalid credentials']);
-
     }
 
     public function logout(Request $request)

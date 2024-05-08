@@ -23,10 +23,10 @@ class WalletController extends Controller
         // Retrieve transactions involving the user
         $transactionsQuery = Transaction::where('user_id', $user->id)
             ->orWhere('recipient_id', $user->id)
-            ->orderBy('timestamp', 'desc'); // Order by recent transactions
+            ->orderBy('created_at', 'desc'); // Order by recent transactions using created_at
 
         // Paginate the transactions
-        $perPage = 5;
+        $perPage = 6;
         $transactions = $transactionsQuery->paginate($perPage);
 
         return view('dashboard.wallet', [

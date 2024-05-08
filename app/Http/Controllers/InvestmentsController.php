@@ -57,6 +57,14 @@ class InvestmentsController extends Controller
             return redirect('login');
         }
 
+        // Check if unstake is allowed based on global settings
+        $unstakeAllowed = DB::table('global_settings')
+                            ->value('unstake');
+
+        if ($unstakeAllowed == 0) {
+        return back()->withErrors(['error' => 'Unstaking is not allowed at this time due to maintenance.']);
+        }
+
         $rewardSettings = DB::table('reward_settings')
             ->select('unstaking_gas_fee', 'staking_400d_reward', 'staking_200d_reward')
             ->first();

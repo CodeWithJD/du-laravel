@@ -11,79 +11,87 @@
 @section('content')
     <div class="row py-5">
         {{-- Balance blocks --}}
-        <div class="wallet row m-0 p-0">
-            <div class="col-lg-6 mt-2">
-                <div class="card box-effect-blue border-primary border-1">
-                    <div class="card-body">
-                        <div>
-                            <span class="display-6 text-primary fs-5 fw-bold">Available Balance</span>
-                        </div>
-                        <div class="mt-2">
-                            <span class="display-5 text-primary"><span class="counter-value"
-                                    data-target="{{ $userDetails->available_balance }}">0</span>
-                                {{-- <span class="fs-1"> Du</span> --}}
-                            </span>
-                        </div>
-                        <div class="d-flex gap-2 mt-2">
-                            <a class="btn btn-primary bg-gradient waves-effect waves-light disabled"
-                                href="">Deposit</a>
-                            <a class="btn btn-primary bg-gradient waves-effect waves-light" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal" href="#">Withdrawal</a>
-                        </div>
-                    </div>
-                </div>
+        @if (session('message'))
+            <!-- Success Alert -->
+            <div class="alert alert-success alert-border-left alert-dismissible fade show" role="alert">
+                <i class="ri-notification-off-line me-3 align-middle"></i> {{ session('message') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            <div class="col-lg-6 mt-2">
-                <div class="card box-effect-blue border-primary border-1">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-4">
-                                <div>
-                                    <span class="display-5 text-primary fs-5 fw-bold">Reward Balance</span>
-                                </div>
-                                <div class="my-2">
-                                    <span class="text-primary display-5"><span class="counter-value"
-                                            data-target="{{ $userDetails->reward_balance }}">0</span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div>
-                                    <span class="display-5 text-primary fs-5 fw-bold">Direct Rewards</span>
-                                </div>
-                                <div class="my-2">
-                                    <span class="text-primary display-5"><span class="counter-value"
-                                            data-target="0">0</span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div>
-                                    <span class="display-5 text-primary fs-5 fw-bold">Team Rewards</span>
-                                </div>
-                                <div class="my-2">
-                                    <span class="text-primary display-5"><span class="counter-value"
-                                            data-target="0">0</span>
-                                    </span>
-                                </div>
-                            </div>
+        @endif
+        <div class="wallet m-0 p-0">
+            <div class="row">
+                <div class="col-lg-6 mt-2">
+                    <div class="card box-effect-blue border-primary border-1">
+                        <div class="card-body">
                             <div>
-                                <a type="button" class="btn btn-primary btn-load">
-                                    <span class="d-flex align-items-center">
-                                        <span class="spinner-grow flex-shrink-0" role="status">
-                                            <span class="visually-hidden">Loading...</span>
+                                <span class="display-6 text-primary fs-6 fw-bold">Available Balance</span>
+                            </div>
+                            <div class="mt-2">
+                                <span class="display-5 text-primary"><span class="counter-value"
+                                        data-target="{{ $userDetails->available_balance }}">0</span>
+                                    {{-- <span class="fs-1"> Du</span> --}}
+                                </span>
+                            </div>
+                            <div class="d-flex gap-2 mt-2">
+                                <a class="btn btn-primary bg-gradient waves-effect waves-light disabled"
+                                    href="">Deposit</a>
+                                <a class="btn btn-primary bg-gradient waves-effect waves-light" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" href="#">Withdrawal</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-2">
+                    <div class="card box-effect-blue border-primary border-1">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div>
+                                        <span class="display-5 text-primary fs-5 fw-bold">Reward Balance</span>
+                                    </div>
+                                    <div class="my-2">
+                                        <span class="text-primary display-5"><span class="counter-value"
+                                                data-target="{{ $userDetails->reward_balance }}">0</span>
                                         </span>
-                                        <span class="flex-grow-1 ms-2">
-                                            Transfer to Balance
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div>
+                                        <span class="display-5 text-primary fs-5 fw-bold">Direct Rewards</span>
+                                    </div>
+                                    <div class="my-2">
+                                        <span class="text-primary display-5"><span class="counter-value"
+                                                data-target="0">0</span>
                                         </span>
-                                    </span>
-                                </a>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div>
+                                        <span class="display-5 text-primary fs-5 fw-bold">Team Rewards</span>
+                                    </div>
+                                    <div class="my-2">
+                                        <span class="text-primary display-5"><span class="counter-value"
+                                                data-target="0">0</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a type="button" class="btn btn-primary btn-load">
+                                        <span class="d-flex align-items-center">
+                                            <span class="spinner-grow flex-shrink-0" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </span>
+                                            <span class="flex-grow-1 ms-2">
+                                                Transfer to Balance
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
@@ -110,81 +118,77 @@
                 </div>
             </div>
 
-
-        </div>
-
-
-
-        <!-- Displaying transactions -->
-        <div class="transactions row p-0 m-0">
-            <div class="col-lg-12 mt-3">
-                <div class="card border-primary border-1">
-                    <!-- end card header -->
-                    <div class="card-body p-0 m-0">
-                        <div class="table-responsive">
-                            <table class="table align-middle" id="transactionsTable">
-                                <thead class="bg-primary">
-                                    <tr>
-                                        <th class="type-head text-white">Type</th>
-                                        <th class="amout-head text-white">Amount</th>
-                                        <th class=".status-head text-white">Status</th>
-                                        <th class="source-head text-white">Source</th>
-                                        <th class="date-head text-white">Date</th>
-                                        <th class="details-head text-white">Transaction Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($transactions as $transaction)
+            <!-- Displaying transactions -->
+            <div class="transactions row p-0 m-0">
+                <div class="col-lg-12 mt-3 p-0">
+                    <div class="card border-primary border-1">
+                        <!-- end card header -->
+                        <div class="card-body p-0 m-0">
+                            <div class="table-responsive">
+                                <table class="table align-middle" id="transactionsTable">
+                                    <thead class="bg-primary">
                                         <tr>
-                                            <td class="p-3">
-                                                @if ($transaction->user_id == $user->id)
-                                                    <span class="withdraw rounded px-3 py-1">Withdraw</span>
-                                                @elseif($transaction->recipient_id == $user->id)
-                                                    <span class="deposit rounded px-3 py-1">Deposit</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <span class="amount">{{ number_format($transaction->amount, 2) }}</span>
-                                                <span class="text-primary small fw-bold">Du</span>
-                                            </td>
-                                            <td>
-                                                @if ($transaction->status == 'Complete')
-                                                    <span class="text-success">{{ $transaction->status }}</span>
-                                                @elseif($transaction->status == 'in Progress')
-                                                    <span class="text-warning">{{ $transaction->status }}</span>
-                                                @elseif($transaction->status == 'fail')
-                                                    <span class="text-danger">{{ $transaction->status }}</span>
-                                                @endif
-                                            </td>
-                                            <td class="type text-primary">{{ $transaction->transaction_source }}</td>
-                                            <td>{{ $transaction->timestamp }}</td>
-                                            <td>{{ $transaction->description }}</td>
-
+                                            <th class="type-head text-white">Type</th>
+                                            <th class="amout-head text-white">Amount</th>
+                                            <th class=".status-head text-white">Status</th>
+                                            <th class="source-head text-white">Source</th>
+                                            <th class="date-head text-white">Date</th>
+                                            <th class="details-head text-white">Transaction Details</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                            {{-- Pagination Controls --}}
-                            <div class="d-flex justify-content-end">
-                                {{ $transactions->links() }}
-                            </div>
-                            <div style="display: none">
-                                <div class="text-center">
-                                    <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
-                                        colors="primary:#121331,secondary:#08a88a"
-                                        style="width:75px;height:75px"></lord-icon>
-                                    <h5 class="mt-2">Sorry! No Result Found</h5>
-                                    <p class="text-muted mb-0">We've searched more than 150+ Orders We did not find any
-                                        orders for you search.</p>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($transactions as $transaction)
+                                            <tr>
+                                                <td class="p-3">
+                                                    @if ($transaction->user_id == $user->id)
+                                                        <span class="withdraw rounded px-3 py-1">Withdraw</span>
+                                                    @elseif($transaction->recipient_id == $user->id)
+                                                        <span class="deposit rounded px-3 py-1">Deposit</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <span class="amount">{{ number_format($transaction->amount, 2) }}</span>
+                                                    <span class="text-primary small fw-bold">Du</span>
+                                                </td>
+                                                <td>
+                                                    @if ($transaction->status == 'Complete')
+                                                        <span class="text-success">{{ $transaction->status }}</span>
+                                                    @elseif($transaction->status == 'in Progress')
+                                                        <span class="text-warning">{{ $transaction->status }}</span>
+                                                    @elseif($transaction->status == 'Rejected')
+                                                        <span class="text-danger">{{ $transaction->status }}</span>
+                                                    @endif
+                                                </td>
+                                                <td class="type text-primary">{{ $transaction->transaction_source }}</td>
+                                                <td>{{ $transaction->timestamp }}</td>
+                                                <td>{{ $transaction->description }}</td>
+
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                {{-- Pagination Controls --}}
+                                <div class="d-flex justify-content-end">
+                                    {{ $transactions->links() }}
+                                </div>
+                                <div style="display: none">
+                                    <div class="text-center">
+                                        <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop"
+                                            colors="primary:#121331,secondary:#08a88a"
+                                            style="width:75px;height:75px"></lord-icon>
+                                        <h5 class="mt-2">Sorry! No Result Found</h5>
+                                        <p class="text-muted mb-0">We've searched more than 150+ Orders We did not find any
+                                            orders for you search.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- end card -->
                     </div>
-                    <!-- end card -->
+                    <!-- end col -->
                 </div>
                 <!-- end col -->
             </div>
-            <!-- end col -->
         </div>
     </div>
 @endsection
