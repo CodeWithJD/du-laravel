@@ -45,7 +45,7 @@
                                                 <div class="mb-3">
                                                     <label for="username" class="form-label">Email</label>
                                                     <input type="email" class="form-control bg-body" id="username"
-                                                        placeholder="Enter username" name="email">
+                                                        placeholder="Enter username" name="email" value="{{ old('email') }}">
                                                 </div>
 
                                                 <div class="mb-3">
@@ -57,7 +57,7 @@
                                                         <input type="password"
                                                             class="bg-body form-control pe-5 password-input"
                                                             placeholder="Enter password" id="password-input"
-                                                            name="password">
+                                                            name="password" value="{{ old('password') }}">
                                                         <button
                                                             class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
                                                             type="button" id="password-addon"><i

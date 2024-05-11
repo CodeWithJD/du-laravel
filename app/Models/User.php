@@ -26,6 +26,16 @@ class User extends Authenticatable
         ];
     }
 
+    public function userDetails() {
+        return $this->hasOne(UserDetails::class, 'user_id');
+    }
+
+    // In User model
+    public function scopeAdmin($query)
+    {
+        return $query->where('role', 'admin');
+    }
+
     // In App\Models\UserDetails.php
     public function user()
     {

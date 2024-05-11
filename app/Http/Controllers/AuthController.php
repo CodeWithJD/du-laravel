@@ -75,7 +75,7 @@ class AuthController extends Controller
         Auth::login($user);
 
         // Redirect to dashboard
-        return redirect('/dashboard');
+        return redirect('/user/dashboard');
     } catch (\Exception $e) {
         return back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
     }
@@ -115,7 +115,7 @@ class AuthController extends Controller
                 ]);
 
                 // Redirect to dashboard
-                return redirect('/dashboard');
+                return redirect('/user/dashboard');
             } elseif ($userDetails->account_status == 'Review') {
                 Auth::logout(); // Ensure the user is not authenticated
                 return back()->withErrors(['email' => 'Your account is currently under review. Please contact our support team at support@dusolutions.io for further assistance.']);
@@ -126,8 +126,11 @@ class AuthController extends Controller
         }
 
         // If login fails or the status is not suitable, redirect back with error
-        return back()->withErrors(['email' => 'Invalid credentials or account status.']);
+        return back()
+        ->withInput()
+        ->withErrors(['email' => 'Invalid credentials or account status.']);
     }
+
 
 
     public function logout(Request $request)

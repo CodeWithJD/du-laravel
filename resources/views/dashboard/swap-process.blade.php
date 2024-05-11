@@ -52,7 +52,7 @@
                         <img src="{{ URL::asset('assets/images/swap/2.png') }}" alt="">
                         <hr>
                         <p class="h3 text-info m-2">STEP 02</p>
-                        <form action="{{ route('swap.confim') }}" method="GET">
+                        <form action="{{ route('swap.confirm') }}" method="GET">
                             @csrf
                             <div class="mt-2">
                                 <input type="hidden" name="amount" value="{{ $swapAmount }}">

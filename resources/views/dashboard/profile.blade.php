@@ -62,7 +62,7 @@
                                         <div class="mb-3">
                                             <label for="countryInput" class="form-label">Country</label>
                                             <input type="text" class="form-control" id="countryInput"
-                                                placeholder="Country" value="Pakistan" disabled />
+                                                placeholder="Country" value=" {{$user->country}} " disabled />
                                         </div>
                                     </div>
                                     <!--end col-->
@@ -197,7 +197,7 @@
                 $('.loader').show();
                 var name = $('#nameInput').val();
                 $.ajax({
-                    url: '/profile/update-name',
+                    url: '/user/profile/update-name',
                     method: 'POST',
                     data: {
                         name: name,
@@ -237,7 +237,7 @@
         }
 
         $.ajax({
-            url: '/profile/update-password',
+            url: '/user/profile/update-password',
             type: 'POST',
             data: {
                 old_password: oldPassword,
