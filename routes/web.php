@@ -91,7 +91,7 @@ Route::prefix('user')->group(function () {
 
 
 
-// // Fallback Route for handling 404
-// Route::fallback(function () {
-//     return view('errors.guest404');
-// });
+// Fallback Route for handling 404
+Route::fallback(function () {
+    return view('errors.guest404');
+});

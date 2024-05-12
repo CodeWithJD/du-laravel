@@ -116,7 +116,7 @@ class DashboardController extends Controller
             'referredUsersCount' => $user->referrals()->count(),
             'totalTeamSize' => $totalTeamSize,
             'stakingData' => $stakingData,
-            'totalStakingSum' => $totalStakingSum, // Pass total staking sum to the view
+            'totalStakingSum' => $totalStakingSum,
             'totalInvestmentSum' => $totalInvestmentSum,
             'directsInvestmentSum' => $directsInvestmentSum,
             'levelTwoReferralsCount' => $levelTwoReferralsCount,
