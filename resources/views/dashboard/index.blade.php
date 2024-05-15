@@ -21,6 +21,18 @@
 
                     <ul class="list-group list-group-flush mb-0 mt-3 p-2 bg-body rounded-3">
                         <ul class="list-group list-group-flush mb-0 mt-3 p-2">
+                            <li class="mb-2 bg-primary p-2">
+                                <div class="d-flex">
+                                    <div class="ms-2 flex-grow-1">
+                                        <h6 class="mb-1 text-white">Open Reward Level</h6>
+                                    </div>
+                                    <div class="text-end">
+                                        <h6 class="mb-1 fw-bold text-white fw-bold"> {{ $userDetails->level }}
+                                            <span class="small text-white">Level</span>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </li>
                             @if ($stakingData->isNotEmpty())
                                 @foreach ($stakingData as $staking)
                                     <li class="list-group-item px-0 bg-body">

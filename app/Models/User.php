@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
+
 
 class User extends Authenticatable
 {
@@ -52,6 +54,22 @@ class User extends Authenticatable
     {
         return $this->hasMany(Staking::class, 'user_id');
     }
+
+    // All Investments
+    public function getTotalInvestments()
+    {
+        // Start with the user's own active investments
+        $totalInvestment = $this->stakings->where('unstake', false)->sum('investedAmount');
+
+        // Add investments from all referrals recursively
+        foreach ($this->referrals as $referral) {
+            $totalInvestment += $referral->getTotalInvestments(); // Ensure this method is recursively calculating correctly
+        }
+
+        // Return the calculated total investments
+        return $totalInvestment;
+    }
+
 
     // Referral counts and investments
     public function getTotalReferralsCount()

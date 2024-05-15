@@ -1,41 +1,22 @@
--- User table main
-
-UPDATE users
-SET invite_code = FLOOR(RAND() * 900000) + 100000
-WHERE invite_code IS NULL;
-
-UPDATE users
-SET invite_code = FLOOR(RAND() * 900000) + 100000
-WHERE invite_code IN (
-    SELECT invite_code
-    FROM (
-        SELECT invite_code, COUNT(*) AS count
-        FROM users
-        GROUP BY invite_code
-        HAVING count > 1
-    ) AS duplicates
+CREATE TABLE levels (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    threshold DECIMAL(10, 2) NOT NULL
 );
 
 
 
--- Password ko Bcrypt main convert karna hai
-
-
-add role to users datatable
-
-
-UPDATE stakings SET created_at = DepositTime;
-UPDATE stakings SET updated_at = DepositTime;
-
-
-CREATE TABLE admin_login_history (
-    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    admin_id BIGINT UNSIGNED NULL,
-    attempt_email VARCHAR(255) NULL,
-    login_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    login_ip VARCHAR(45) NOT NULL,
-    user_agent VARCHAR(255) NOT NULL,
-    status VARCHAR(50) NOT NULL,
-    FOREIGN KEY (admin_id) REFERENCES users(id) ON DELETE SET NULL
-);
+INSERT INTO levels (name, threshold) VALUES
+('Level 1', 5000),
+('Level 2', 10000),
+('Level 3', 15000),
+('Level 4', 20000),
+('Level 5', 25000),
+('Level 6', 30000),
+('Level 7', 35000),
+('Level 8', 40000),
+('Level 9', 45000),
+('Level 10', 50000),
+('Level 11', 55000),
+('Level 12', 60000);
 
