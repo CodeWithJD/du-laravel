@@ -33,8 +33,8 @@
                                 </span>
                             </div>
                             <div class="d-flex gap-2 mt-2">
-                                <a class="btn btn-primary bg-gradient waves-effect waves-light disabled"
-                                    href="">Deposit</a>
+                                <a class="btn btn-primary bg-gradient waves-effect waves-light"
+                                    href=" {{route('swap.index')}} ">Deposit</a>
                                 <a class="btn btn-primary bg-gradient waves-effect waves-light" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" href="#">Withdrawal</a>
                             </div>
@@ -160,7 +160,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="type text-primary">{{ $transaction->transaction_source }}</td>
-                                                <td>{{ $transaction->timestamp }}</td>
+                                                <td>{{ $transaction->created_at }}</td>
                                                 <td>{{ $transaction->description }}</td>
 
                                             </tr>
