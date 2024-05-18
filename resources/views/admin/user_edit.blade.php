@@ -98,6 +98,10 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td class="fw-medium">Open Level</td>
+                                        <td> {{ $user->userDetails->level }}</td>
+                                    </tr>
+                                    <tr>
                                         <td class="fw-medium">Total Team</td>
                                         <td> {{ $referredUsersCount }} Members</td>
                                     </tr>
@@ -189,6 +193,16 @@
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="#stake-list" role="tab">
                                     Stake List
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#stake-rewards" role="tab">
+                                    Stake Rewards
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#referral_rewards" role="tab">
+                                    Referral Rewards
                                 </a>
                             </li>
                         </ul><!--end nav-->
@@ -342,6 +356,58 @@
                                         </tr>
                                     @endforeach
 
+                                    </tbody>
+                                </table><!--end table-->
+                            </div>
+                        </div><!--edn tab-pane-->
+
+                        <div class="tab-pane" id="stake-rewards" role="tabpanel">
+                            <h6 class="card-title mb-4 pb-2">Time Entries</h6>
+                            <div class="table-responsive table-card">
+                                <table class="table align-middle mb-0">
+                                    <thead class="table-light text-muted">
+                                        <tr>
+                                            <th scope="col">Staking ID</th>
+                                            <th scope="col">amount</th>
+                                            <th scope="col">Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($stakingRewards as $stakingReward)
+                                        <tr>
+                                            <td>{{$stakingReward['staking_id']}}</td>
+                                            <td><span class="fw-bold">{{$stakingReward['reward_amount']}}</span> <span class="text-danger">Du</span> </td>
+                                            <td>{{$stakingReward['created_at']}}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table><!--end table-->
+                            </div>
+                        </div><!--edn tab-pane-->
+
+                        <div class="tab-pane" id="referral_rewards" role="tabpanel">
+                            <h6 class="card-title mb-4 pb-2">Time Entries</h6>
+                            <div class="table-responsive table-card">
+                                <table class="table align-middle mb-0">
+                                    <thead class="table-light text-muted">
+                                        <tr>
+                                            <th scope="col">Referee ID</th>
+                                            <th scope="col">level</th>
+                                            <th scope="col">Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($referralRewards as $referralReward)
+                                        <tr>
+                                            <td>
+                                                <a href="{{ route('admin.user.edit', $referralReward['referee_id']) }}" target="_blank">
+                                                    {{$referralReward['referee_id']}}
+                                                </a>
+                                            </td>
+                                            <td>{{$referralReward['level']}}</td>
+                                            <td><span class="fw-bold">{{$referralReward['reward_amount']}}</span> <span class="text-danger">Du</span> </td>
+                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table><!--end table-->
                             </div>

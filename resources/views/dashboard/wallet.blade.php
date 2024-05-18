@@ -71,8 +71,8 @@
                                     </div>
                                     <div class="my-2">
                                         <span class="text-primary display-5"><span class="counter-value"
-                                                data-target="0">0</span>
-                                        </span>
+                                            data-target="{{ $userDetails->team_reward }}">0</span>
+                                    </span>
                                     </div>
                                 </div>
                                 <div>

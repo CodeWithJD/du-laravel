@@ -62,8 +62,6 @@ class AdminDashboardController extends Controller
             'desktop' => UserDetails::whereRaw("last_login_device NOT LIKE '%Mobile%' AND last_login_device NOT LIKE '%Tablet%'")->count(),
         ];
 
-
-
         return view('admin.dashboard', [
             'name' => $adminUser->name,
             'role' => $adminUser->role,
@@ -73,7 +71,7 @@ class AdminDashboardController extends Controller
             'monthlyData' => $monthlyData,
             'totalStake' => $totalStake,
             'totalUnstake' => $totalUnstake,
-            'deviceCounts' => $deviceCounts // Already added
+            'deviceCounts' => $deviceCounts,
         ]);
     }
 }

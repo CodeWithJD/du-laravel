@@ -20,3 +20,40 @@ INSERT INTO levels (name, threshold) VALUES
 ('Level 11', 55000),
 ('Level 12', 60000);
 
+
+
+------------------------------
+
+CREATE TABLE `staking_rewards` (
+    `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `user_id` BIGINT(20) UNSIGNED NOT NULL,
+    `staking_id` BIGINT(20) UNSIGNED NOT NULL,
+    `reward_amount` DECIMAL(10, 2) NOT NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`staking_id`) REFERENCES `stakings`(`id`) ON DELETE CASCADE
+);
+
+
+CREATE TABLE `referral_rewards` (
+    `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `referrer_id` BIGINT(20) UNSIGNED NOT NULL,
+    `referee_id` BIGINT(20) UNSIGNED NOT NULL,
+    `level` INT(11) NOT NULL,
+    `reward_amount` DECIMAL(10, 2) NOT NULL,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (`referrer_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`referee_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
+);
+
+
+
+ALTER TABLE `stakings`
+ADD COLUMN `last_reward_date` DATE DEFAULT NULL
+AFTER `timeframe`;
+
+
+add team_reward in user_details
+

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Transaction;
 use App\Models\FeesCounter;
+use App\Models\StakingReward;
+use App\Models\ReferralReward;
 use Carbon\Carbon;
 
 
@@ -109,8 +111,11 @@ class AdminUsersController extends Controller
         $totalunstakeSum = $stakingData->where('withdrawn', true)
         ->sum('stake_amount');
 
+        // Fetch referral rewards
+        $referralRewards = ReferralReward::where('referrer_id', $id)->get();
 
-
+        // Fetch staking rewards
+        $stakingRewards = StakingReward::where('user_id', $id)->get();
 
         return view('admin.user_edit', [
             'name' => $adminUser->name,
@@ -123,6 +128,8 @@ class AdminUsersController extends Controller
             'stakingData' => $stakingData,
             'totalStakingSum' => $totalStakingSum,
             'totalunstakeSum' => $totalunstakeSum,
+            'referralRewards' => $referralRewards,
+            'stakingRewards' => $stakingRewards
 
         ]);
     }

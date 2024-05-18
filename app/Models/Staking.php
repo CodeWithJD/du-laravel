@@ -9,6 +9,7 @@ class Staking extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'staking_id';
     protected $fillable = [
         'user_id',
         'investedAmount',
@@ -17,6 +18,7 @@ class Staking extends Model
         'reward_paid',
         'unstake',
         'timeframe',
+        'last_reward_date',
         'created_at',
         'updated_at',
     ];

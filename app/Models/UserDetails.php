@@ -15,6 +15,7 @@ class UserDetails extends Model
         'withdrawal_wallet',
         'available_balance',
         'reward_balance',
+        'team_reward',
         'whatsapp_notification',
         'account_status',
         'email_verified',

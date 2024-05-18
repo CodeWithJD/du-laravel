@@ -32,6 +32,11 @@ class User extends Authenticatable
         return $this->hasOne(UserDetails::class, 'user_id');
     }
 
+    public function referrer()
+    {
+        return $this->belongsTo(User::class, 'ref_id');
+    }
+
     // In User model
     public function scopeAdmin($query)
     {
