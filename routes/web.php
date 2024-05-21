@@ -10,6 +10,7 @@ use App\Http\Controllers\ReferralLevelsController;
 use App\Http\Controllers\SwapController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ActivitiesController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminUsersController;
@@ -30,6 +31,7 @@ Route::prefix('user')->group(function () {
 
         // WalletController routes
         Route::get('/wallet', [WalletController::class, 'index'])->name('wallet.index');
+        Route::post('/wallet', [WalletController::class, 'transferRewardToAvailable'])->name('wallet.transferRewardToAvailable');
 
         // TransferController routes
         Route::get('/wallet/transfer', [TransferController::class, 'transfer'])->name('wallet.transfer');
@@ -53,6 +55,10 @@ Route::prefix('user')->group(function () {
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
         Route::post('/profile/update-name', [ProfileController::class, 'updateName'])->name('update.name');
         Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
+
+        // Activities controller
+        Route::get('/activities', [ActivitiesController::class, 'show'])->name('activities.show');
+
 
 
         // Adding logout here ensures that only authenticated users can access it

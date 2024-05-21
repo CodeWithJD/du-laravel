@@ -18,6 +18,24 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
+        @if (session('error'))
+            <!-- Error Alert -->
+            <div class="alert alert-danger alert-border-left alert-dismissible fade show" role="alert">
+                <i class="ri-notification-off-line me-3 align-middle"></i> {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if ($errors->any())
+            <!-- Validation Errors -->
+            <div class="alert alert-danger alert-border-left alert-dismissible fade show" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <div class="wallet m-0 p-0">
             <div class="row">
                 <div class="col-lg-6 mt-2">
@@ -34,7 +52,7 @@
                             </div>
                             <div class="d-flex gap-2 mt-2">
                                 <a class="btn btn-primary bg-gradient waves-effect waves-light"
-                                    href=" {{route('swap.index')}} ">Deposit</a>
+                                    href=" {{ route('swap.index') }} ">Deposit</a>
                                 <a class="btn btn-primary bg-gradient waves-effect waves-light" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" href="#">Withdrawal</a>
                             </div>
@@ -61,7 +79,7 @@
                                     </div>
                                     <div class="my-2">
                                         <span class="text-primary display-5"><span class="counter-value"
-                                                data-target="0">0</span>
+                                                data-target="{{ $userDetails->direct_reward }}">0</span>
                                         </span>
                                     </div>
                                 </div>
@@ -71,12 +89,13 @@
                                     </div>
                                     <div class="my-2">
                                         <span class="text-primary display-5"><span class="counter-value"
-                                            data-target="{{ $userDetails->team_reward }}">0</span>
-                                    </span>
+                                                data-target="{{ $userDetails->team_reward }}">0</span>
+                                        </span>
                                     </div>
                                 </div>
                                 <div>
-                                    <a type="button" class="btn btn-primary btn-load">
+                                    <a type="button" class="btn btn-primary btn-load" data-bs-toggle="modal"
+                                        data-bs-target="#transfertoBalanceModal">
                                         <span class="d-flex align-items-center">
                                             <span class="spinner-grow flex-shrink-0" role="status">
                                                 <span class="visually-hidden">Loading...</span>
@@ -118,6 +137,36 @@
                 </div>
             </div>
 
+            <!-- Transfer to Balance Modal -->
+            <div class="modal fade" id="transfertoBalanceModal" tabindex="-1" aria-labelledby="transfertoBalanceModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="transferBalanceModalLabel">Reward Transfer to Balance</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Daily Withdrawal limit : <span class="text-primary fw-bold">{{ $dailyTransferLimit }}</span>
+                            </p>
+                            <p>Your Limits: <span class="text-primary fw-bold">
+                                    {{ $dailyTransferLimit - $todayTransfers }}</span></p>
+                            <!-- Form or content for transfer to balance -->
+                            <form action="{{ route('wallet.transferRewardToAvailable') }}" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="transferAmount" class="form-label">Amount</label>
+                                    <input type="number" class="form-control bg-mu" id="transferAmount"
+                                        name="transfer_amount" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Transfer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Displaying transactions -->
             <div class="transactions row p-0 m-0">
                 <div class="col-lg-12 mt-3 p-0">
@@ -147,7 +196,8 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <span class="amount">{{ number_format($transaction->amount, 2) }}</span>
+                                                    <span
+                                                        class="amount">{{ number_format($transaction->amount, 2) }}</span>
                                                     <span class="text-primary small fw-bold">Du</span>
                                                 </td>
                                                 <td>

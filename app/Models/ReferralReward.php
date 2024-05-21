@@ -15,4 +15,14 @@ class ReferralReward extends Model
         'level',
         'reward_amount',
     ];
+
+    public function referrer()
+    {
+        return $this->belongsTo(User::class, 'referrer_id');
+    }
+
+    public function referee()
+    {
+        return $this->belongsTo(User::class, 'referee_id');
+    }
 }

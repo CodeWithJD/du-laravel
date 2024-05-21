@@ -1,59 +1,24 @@
-CREATE TABLE levels (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    threshold DECIMAL(10, 2) NOT NULL
-);
-
-
-
-INSERT INTO levels (name, threshold) VALUES
-('Level 1', 5000),
-('Level 2', 10000),
-('Level 3', 15000),
-('Level 4', 20000),
-('Level 5', 25000),
-('Level 6', 30000),
-('Level 7', 35000),
-('Level 8', 40000),
-('Level 9', 45000),
-('Level 10', 50000),
-('Level 11', 55000),
-('Level 12', 60000);
-
-
-
-------------------------------
-
-CREATE TABLE `staking_rewards` (
-    `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `user_id` BIGINT(20) UNSIGNED NOT NULL,
-    `staking_id` BIGINT(20) UNSIGNED NOT NULL,
-    `reward_amount` DECIMAL(10, 2) NOT NULL,
-    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`staking_id`) REFERENCES `stakings`(`id`) ON DELETE CASCADE
-);
-
-
-CREATE TABLE `referral_rewards` (
-    `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `referrer_id` BIGINT(20) UNSIGNED NOT NULL,
-    `referee_id` BIGINT(20) UNSIGNED NOT NULL,
-    `level` INT(11) NOT NULL,
-    `reward_amount` DECIMAL(10, 2) NOT NULL,
-    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (`referrer_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`referee_id`) REFERENCES `users`(`id`) ON DELETE CASCADE
-);
-
-
-
 ALTER TABLE `stakings`
-ADD COLUMN `last_reward_date` DATE DEFAULT NULL
-AFTER `timeframe`;
+ADD COLUMN `is_first_stake` TINYINT(1) DEFAULT 0 AFTER `unstake`;
 
 
-add team_reward in user_details
+ALTER TABLE reward_settings
+ADD COLUMN reward_to_balance_transfer_fees DECIMAL(5, 2) DEFAULT 5.00
+AFTER direct_stake_reward;
+
+UPDATE reward_settings
+SET reward_to_balance_transfer_fees = 5.00
+WHERE id = 1;
+
+
+ALTER TABLE reward_settings
+ADD COLUMN daily_transfer_limit DECIMAL(10, 2) DEFAULT 1000.00
+AFTER reward_to_balance_transfer_fees;
+
+UPDATE reward_settings
+SET daily_transfer_limit = 1000.00
+WHERE id = 1;
+
+ALTER TABLE user_details ADD COLUMN daily_reward_transfer_used DECIMAL(10, 2) DEFAULT 0.00 AFTER direct_reward;
+
 

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Models\User;
 use App\Models\Staking;
 use App\Models\UserDetails;
+use App\Models\ReferralReward;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 
@@ -249,6 +251,8 @@ class InvestmentsController extends Controller
         $timeframe = (int) $request->input('timeframe'); // Convert timeframe to integer before using
         $withdrawnTime = $depositTime->copy()->addDays($timeframe); // Now this should work without error
 
+        //Check if it's the user's first staking
+        $isFirstStake = $user->stakings()->count() == 0 ? 1 : 0;
 
         // Create a new staking entry
         Staking::create([
@@ -257,7 +261,12 @@ class InvestmentsController extends Controller
             'DepositTime' => $depositTime,
             'withdrawnTime' => $withdrawnTime,
             'timeframe' => $timeframe,
+            'is_first_stake' => $isFirstStake,
         ]);
+
+        if ($isFirstStake) {
+            $this->distributeFirstStakeReward($user, $amount);
+        }
 
         $transactionHash = $this->generateTransactionHash();
 
@@ -289,4 +298,29 @@ class InvestmentsController extends Controller
         return '0xDu' . strtoupper(Str::random(10));
     }
 
+    protected function distributeFirstStakeReward(User $user, $amount)
+    {
+        $rewardSettings = DB::table('reward_settings')
+            ->select('direct_stake_reward')
+            ->first();
+
+        $referrer = User::find($user->ref_id);
+
+        if ($referrer) {
+            $reward = $amount * $rewardSettings->direct_stake_reward; // Use the direct stake reward from settings
+
+            // Update referrer's reward balance
+            $referrer->userDetails->reward_balance += $reward;
+            $referrer->userDetails->direct_reward += $reward;
+            $referrer->userDetails->save();
+
+            // Save referral reward
+            ReferralReward::create([
+                'referrer_id' => $referrer->id,
+                'referee_id' => $user->id,
+                'level' => 1, // Since this is a direct referral reward
+                'reward_amount' => $reward,
+            ]);
+        }
+    }
 }

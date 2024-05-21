@@ -18,6 +18,8 @@ class RewardSetting extends Model
         'staking_400d_reward',
         'deposit_usdt_charge',
         'deposit_du_charge',
+        'reward_to_balance_transfer_fees',
+        'daily_reward_transfer_limit',
         // Add any other fields present in the reward_settings table
     ];
 }

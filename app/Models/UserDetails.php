@@ -16,6 +16,8 @@ class UserDetails extends Model
         'available_balance',
         'reward_balance',
         'team_reward',
+        'direct_reward',
+        'daily_reward_transfer_used',
         'whatsapp_notification',
         'account_status',
         'email_verified',
