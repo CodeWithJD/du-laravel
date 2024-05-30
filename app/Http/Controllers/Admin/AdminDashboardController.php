@@ -29,31 +29,43 @@ class AdminDashboardController extends Controller
         $monthlyData = [];
         $totalStake = 0; // Initialize total stake amount
         $totalUnstake = 0; // Initialize total unstake amount
+
+        // Using a set to keep track of unique months
+        $uniqueMonths = [];
+
         for ($i = 0; $i < 12; $i++) {
-            $month = Carbon::now()->subMonths($i);
-            $startOfMonth = $month->startOfMonth()->toDateString();
-            $endOfMonth = $month->endOfMonth()->toDateString();
+            $month = Carbon::now()->startOfMonth()->subMonthsNoOverflow($i); // Ensure start of month to avoid duplicates
+            $monthKey = $month->format('F Y');
 
-            $monthStake = Staking::where('unstake', false)
-                                 ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
-                                 ->sum('investedAmount');
-            $monthUnstake = Staking::where('unstake', true)
-                                   ->whereBetween('updated_at', [$startOfMonth, $endOfMonth])
-                                   ->sum('investedAmount');
+            // Check if the month is already processed
+            if (!in_array($monthKey, $uniqueMonths)) {
+                $uniqueMonths[] = $monthKey;
 
-            // Accumulating the totals
-            $totalStake += $monthStake;
-            $totalUnstake += $monthUnstake;
+                $startOfMonth = $month->toDateString();
+                $endOfMonth = $month->endOfMonth()->toDateString();
 
-            $monthlyData[] = [
-                'month' => $month->format('F Y'),
-                'stakeAmount' => $monthStake,
-                'unstakeAmount' => $monthUnstake
-            ];
+                $monthStake = Staking::where('unstake', false)
+                                    ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
+                                    ->sum('investedAmount');
+                $monthUnstake = Staking::where('unstake', true)
+                                    ->whereBetween('updated_at', [$startOfMonth, $endOfMonth])
+                                    ->sum('investedAmount');
+
+                // Accumulating the totals
+                $totalStake += $monthStake;
+                $totalUnstake += $monthUnstake;
+
+                $monthlyData[] = [
+                    'month' => $monthKey,
+                    'stakeAmount' => $monthStake,
+                    'unstakeAmount' => $monthUnstake
+                ];
+            }
         }
 
         // Reverse the array to start from the latest month
         $monthlyData = array_reverse($monthlyData);
+
 
         // Device type counts using optimized database queries
         $deviceCounts = [
@@ -61,6 +73,11 @@ class AdminDashboardController extends Controller
             'tablet' => UserDetails::where('last_login_device', 'LIKE', '%Tablet%')->count(),
             'desktop' => UserDetails::whereRaw("last_login_device NOT LIKE '%Mobile%' AND last_login_device NOT LIKE '%Tablet%'")->count(),
         ];
+
+        // Calculate the total invested amount where unstake is false
+        $totalInvestedAmount = Staking::where('unstake', false)->sum('investedAmount');
+        $totalunstakeAmount = Staking::where('unstake', true)->sum('investedAmount');
+
 
         return view('admin.dashboard', [
             'name' => $adminUser->name,
@@ -70,8 +87,10 @@ class AdminDashboardController extends Controller
             'totalUsersWithStaking' => $totalUsersWithStaking,
             'monthlyData' => $monthlyData,
             'totalStake' => $totalStake,
-            'totalUnstake' => $totalUnstake,
-            'deviceCounts' => $deviceCounts,
+            'totalUnstake' => $totalUnstake, // Last 12 Month
+            'deviceCounts' => $deviceCounts, // Last 12 Month
+            'totalInvestedAmount' => $totalInvestedAmount,
+            'totalunstakeAmount' => $totalunstakeAmount,
         ]);
     }
 }

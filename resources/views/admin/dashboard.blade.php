@@ -173,11 +173,11 @@
                 <div class="card-body px-0">
                     <ul class="list-inline main-chart text-center mb-0">
                         <li class="list-inline-item chart-border-left me-0 border-0">
-                            <h4 class="text-success">{{ $totalStake }} <span
+                            <h4 class="text-success">{{ $totalInvestedAmount }} <span
                                     class="text-muted d-inline-block fs-13 align-middle ms-2">Total Stake</span></h4>
                         </li>
                         <li class="list-inline-item chart-border-left me-0">
-                            <h4 class="text-danger">{{ $totalUnstake }}<span
+                            <h4 class="text-danger">{{ $totalunstakeAmount }}<span
                                     class="text-muted d-inline-block fs-13 align-middle ms-2">Total Unstake</span>
                             </h4>
                         </li>
