@@ -20,15 +20,27 @@ class ActivitiesController extends Controller
         $today = Carbon::today();
         $yesterday = Carbon::yesterday();
 
-        $todayRewards = ReferralReward::where('referrer_id', $user->id)
-                                      ->orWhere('referee_id', $user->id)
-                                      ->whereDate('created_at', $today)
-                                      ->sum('reward_amount');
+        // Separate queries for today rewards
+        $todayReferralRewardsAsReferrer = ReferralReward::where('referrer_id', $user->id)
+                                                        ->whereDate('created_at', $today)
+                                                        ->sum('reward_amount');
 
-        $yesterdayRewards = ReferralReward::where('referrer_id', $user->id)
-                                          ->orWhere('referee_id', $user->id)
-                                          ->whereDate('created_at', $yesterday)
-                                          ->sum('reward_amount');
+        $todayReferralRewardsAsReferee = ReferralReward::where('referee_id', $user->id)
+                                                       ->whereDate('created_at', $today)
+                                                       ->sum('reward_amount');
+
+        $todayRewards = $todayReferralRewardsAsReferrer + $todayReferralRewardsAsReferee;
+
+        // Separate queries for yesterday rewards
+        $yesterdayReferralRewardsAsReferrer = ReferralReward::where('referrer_id', $user->id)
+                                                            ->whereDate('created_at', $yesterday)
+                                                            ->sum('reward_amount');
+
+        $yesterdayReferralRewardsAsReferee = ReferralReward::where('referee_id', $user->id)
+                                                           ->whereDate('created_at', $yesterday)
+                                                           ->sum('reward_amount');
+
+        $yesterdayRewards = $yesterdayReferralRewardsAsReferrer + $yesterdayReferralRewardsAsReferee;
 
         $referralRewards = ReferralReward::where('referrer_id', $user->id)
                                          ->orWhere('referee_id', $user->id)
