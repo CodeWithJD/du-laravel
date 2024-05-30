@@ -18,6 +18,27 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
+
+            <!-- Today and Yesterday Rewards -->
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card border-primary border-1 mb-3">
+                    <div class="card-header bg-primary text-white">Today Reward</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $todayRewards }}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card border-primary border-1 mb-3">
+                    <div class="card-header bg-primary text-white">Yesterday Reward</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $yesterdayRewards }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="wallet m-0 p-0">
 
             <!-- Displaying transactions -->
@@ -39,7 +60,7 @@
                                     <tbody>
                                         @foreach ($referralRewards as $referralReward)
                                             <tr>
-                                                <td>{{ $referralReward->referrer->name }}</td>
+                                                <td>{{ $referralReward->referee->name }}</td>
                                                 <td>{{ $referralReward->level }}</td>
                                                 <td class="fw-bold">{{ $referralReward->reward_amount }}</td>
                                                 <td>{{ $referralReward->created_at }}</td>
@@ -48,6 +69,10 @@
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+                        <!-- Pagination Links -->
+                        <div class="d-flex justify-content-center mt-3">
+                            {{ $referralRewards->links() }}
                         </div>
                         <!-- end card -->
                     </div>

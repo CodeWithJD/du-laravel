@@ -54,8 +54,9 @@
                         <div class="d-flex align-content-center">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <a href=" {{ route('profile.index') }} " class="btn btn-primary btn-sm">Profile</a>
-                                <button type="submit" class="btn btn-danger btn-sm">Logout</button>
+                                <a href=" {{ route('activities.show') }} " class="btn btn-primary btn-sm mt-1">Rewards</a>
+                                <a href=" {{ route('profile.index') }} " class="btn btn-primary btn-sm mt-1">Profile</a>
+                                <button type="submit" class="btn btn-danger btn-sm mt-1">Logout</button>
                             </form>
                         </div>
                     </div>

@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\StakingReward;
 use App\Models\ReferralReward;
 use Illuminate\Support\Facades\Auth;
-
+use Carbon\Carbon;
 
 class ActivitiesController extends Controller
 {
@@ -18,18 +17,30 @@ class ActivitiesController extends Controller
             return redirect('login');
         }
 
-        $referralRewards = ReferralReward::where('referrer_id', $user->id)->orWhere('referee_id', $user->id)->get();
+        $today = Carbon::today();
+        $yesterday = Carbon::yesterday();
+
+        $todayRewards = ReferralReward::where('referrer_id', $user->id)
+                                      ->orWhere('referee_id', $user->id)
+                                      ->whereDate('created_at', $today)
+                                      ->sum('reward_amount');
+
+        $yesterdayRewards = ReferralReward::where('referrer_id', $user->id)
+                                          ->orWhere('referee_id', $user->id)
+                                          ->whereDate('created_at', $yesterday)
+                                          ->sum('reward_amount');
 
         $referralRewards = ReferralReward::where('referrer_id', $user->id)
-                                        ->orWhere('referee_id', $user->id)
-                                        ->with(['referrer', 'referee'])
-                                        ->get();
-
-
+                                         ->orWhere('referee_id', $user->id)
+                                         ->orderBy('created_at', 'desc')
+                                         ->with(['referrer', 'referee'])
+                                         ->paginate(10);
 
         return view('dashboard.activities', [
             'name' => $user->name,
             'referralRewards' => $referralRewards,
-                ]);
+            'todayRewards' => $todayRewards,
+            'yesterdayRewards' => $yesterdayRewards,
+        ]);
     }
 }

@@ -25,6 +25,10 @@ class AdminDashboardController extends Controller
         $totalAvailableBalance = UserDetails::sum('available_balance');
         $totalUsersWithStaking = Staking::distinct('user_id')->where('unstake', false)->count();
 
+        // Calculate the total invested amount where unstake is false
+        $totalInvestedAmount = Staking::where('unstake', false)->sum('investedAmount');
+        $totalUnstakeAmount = Staking::where('unstake', true)->sum('investedAmount');
+
         // Calculate the staking data for the last 12 months
         $monthlyData = [];
         $totalStake = 0; // Initialize total stake amount
@@ -66,17 +70,12 @@ class AdminDashboardController extends Controller
         // Reverse the array to start from the latest month
         $monthlyData = array_reverse($monthlyData);
 
-
         // Device type counts using optimized database queries
         $deviceCounts = [
             'mobile' => UserDetails::where('last_login_device', 'LIKE', '%Mobile%')->count(),
             'tablet' => UserDetails::where('last_login_device', 'LIKE', '%Tablet%')->count(),
             'desktop' => UserDetails::whereRaw("last_login_device NOT LIKE '%Mobile%' AND last_login_device NOT LIKE '%Tablet%'")->count(),
         ];
-
-        // Calculate the total invested amount where unstake is false
-        $totalInvestedAmount = Staking::where('unstake', false)->sum('investedAmount');
-        $totalunstakeAmount = Staking::where('unstake', true)->sum('investedAmount');
 
 
         return view('admin.dashboard', [
@@ -90,7 +89,7 @@ class AdminDashboardController extends Controller
             'totalUnstake' => $totalUnstake, // Last 12 Month
             'deviceCounts' => $deviceCounts, // Last 12 Month
             'totalInvestedAmount' => $totalInvestedAmount,
-            'totalunstakeAmount' => $totalunstakeAmount,
+            'totalUnstakeAmount' => $totalUnstakeAmount,
         ]);
     }
 }
