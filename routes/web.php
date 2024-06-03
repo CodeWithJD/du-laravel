@@ -12,9 +12,11 @@ use App\Http\Controllers\OtpController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ActivitiesController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminUsersController;
+
 
 
 
@@ -77,8 +79,17 @@ Route::prefix('user')->group(function () {
         Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
         Route::post('login', [AuthController::class, 'login'])->name('login.post');
 
-        Route::get('/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-        Route::post('/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.reset');
+  // Route to display the password reset request form
+Route::get('/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+
+// Route to handle sending the password reset link email
+Route::post('/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.reset');
+
+// Route to display the password reset form with token and email parameters
+Route::get('/email/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset.form');
+
+// Route to handle the password reset request
+Route::post('/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 
 
 
