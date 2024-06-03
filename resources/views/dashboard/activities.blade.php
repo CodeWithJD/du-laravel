@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="card border-primary border-1 mb-3">
-                    <div class="card-header bg-primary text-white">Today Reward</div>
+                    <div class="card-header bg-primary text-white">Today Team Reward</div>
                     <div class="card-body">
                         <h5 class="card-title">{{ $todayRewards }}</h5>
                     </div>
@@ -31,7 +31,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="card border-primary border-1 mb-3">
-                    <div class="card-header bg-primary text-white">Yesterday Reward</div>
+                    <div class="card-header bg-primary text-white">Yesterday Team Reward</div>
                     <div class="card-body">
                         <h5 class="card-title">{{ $yesterdayRewards }}</h5>
                     </div>

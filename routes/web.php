@@ -11,6 +11,7 @@ use App\Http\Controllers\SwapController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ActivitiesController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminUsersController;
@@ -75,6 +76,11 @@ Route::prefix('user')->group(function () {
 
         Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
         Route::post('login', [AuthController::class, 'login'])->name('login.post');
+
+        Route::get('/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+        Route::post('/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.reset');
+
+
 
     });
 

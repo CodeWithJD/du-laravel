@@ -25,22 +25,10 @@ class ActivitiesController extends Controller
                                                         ->whereDate('created_at', $today)
                                                         ->sum('reward_amount');
 
-        $todayReferralRewardsAsReferee = ReferralReward::where('referee_id', $user->id)
-                                                       ->whereDate('created_at', $today)
-                                                       ->sum('reward_amount');
-
-        $todayRewards = $todayReferralRewardsAsReferrer + $todayReferralRewardsAsReferee;
-
         // Separate queries for yesterday rewards
         $yesterdayReferralRewardsAsReferrer = ReferralReward::where('referrer_id', $user->id)
                                                             ->whereDate('created_at', $yesterday)
                                                             ->sum('reward_amount');
-
-        $yesterdayReferralRewardsAsReferee = ReferralReward::where('referee_id', $user->id)
-                                                           ->whereDate('created_at', $yesterday)
-                                                           ->sum('reward_amount');
-
-        $yesterdayRewards = $yesterdayReferralRewardsAsReferrer + $yesterdayReferralRewardsAsReferee;
 
         $referralRewards = ReferralReward::where('referrer_id', $user->id)
                                          ->orWhere('referee_id', $user->id)
@@ -51,8 +39,8 @@ class ActivitiesController extends Controller
         return view('dashboard.activities', [
             'name' => $user->name,
             'referralRewards' => $referralRewards,
-            'todayRewards' => $todayRewards,
-            'yesterdayRewards' => $yesterdayRewards,
+            'todayRewards' => $todayReferralRewardsAsReferrer,
+            'yesterdayRewards' => $yesterdayReferralRewardsAsReferrer,
         ]);
     }
 }
