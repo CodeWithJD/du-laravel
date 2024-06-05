@@ -38,6 +38,7 @@ Route::prefix('user')->group(function () {
 
         // TransferController routes
         Route::get('/wallet/transfer', [TransferController::class, 'transfer'])->name('wallet.transfer');
+        Route::post('/wallet/sendOtp', [TransferController::class, 'sendOtp'])->name('wallet.sendOtp');
         Route::post('/wallet/validateTransfer', [TransferController::class, 'validateTransfer'])->name('wallet.validateTransfer');
         Route::post('/wallet/completeTransfer', [TransferController::class, 'completeTransfer'])->name('wallet.completeTransfer');
         Route::get('/dashboard/levels/{level}', [ReferralLevelsController::class, 'showLevelDetails'])->name('levels.show');

@@ -1,24 +1,9 @@
-ALTER TABLE `stakings`
-ADD COLUMN `is_first_stake` TINYINT(1) DEFAULT 0 AFTER `unstake`;
-
-
-ALTER TABLE reward_settings
-ADD COLUMN reward_to_balance_transfer_fees DECIMAL(5, 2) DEFAULT 5.00
-AFTER direct_stake_reward;
-
-UPDATE reward_settings
-SET reward_to_balance_transfer_fees = 5.00
-WHERE id = 1;
-
-
-ALTER TABLE reward_settings
-ADD COLUMN daily_transfer_limit DECIMAL(10, 2) DEFAULT 1000.00
-AFTER reward_to_balance_transfer_fees;
-
-UPDATE reward_settings
-SET daily_transfer_limit = 1000.00
-WHERE id = 1;
-
-ALTER TABLE user_details ADD COLUMN daily_reward_transfer_used DECIMAL(10, 2) DEFAULT 0.00 AFTER direct_reward;
-
-
+CREATE TABLE otp_codes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT(20) UNSIGNED NULL,
+    otp_code VARCHAR(6) NOT NULL,
+    expires_at TIMESTAMP NOT NULL,
+    status ENUM('unused', 'used') DEFAULT 'unused',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
