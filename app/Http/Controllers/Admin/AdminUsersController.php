@@ -13,11 +13,6 @@ use App\Models\ReferralReward;
 use Carbon\Carbon;
 
 
-
-
-
-
-
 class AdminUsersController extends Controller
 {
     public function userListShow(Request $request) {
@@ -55,7 +50,7 @@ class AdminUsersController extends Controller
         ]);
     }
 
-    public function editUser($id) {
+    public function infoUser($id) {
         if (!Auth::guard('admin')->check() || Auth::guard('admin')->user()->role !== 'admin') {
             return redirect()->route('login')->withErrors('Please Login first...!.');
         }
@@ -132,5 +127,33 @@ class AdminUsersController extends Controller
             'stakingRewards' => $stakingRewards
 
         ]);
+    }
+
+    public function edit($id)
+    {
+        if (!Auth::guard('admin')->check() || Auth::guard('admin')->user()->role !== 'admin') {
+            return redirect()->route('login')->withErrors('Please Login first...!.');
+        }
+
+        $adminUser = Auth::guard('admin')->user();
+
+        $user = User::findOrFail($id);
+        return view('admin.edit', [
+            'user' => $user,
+            'name' => $adminUser->name,
+            'role' => $adminUser->role
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->update($request->all());
+
+        $userDetails = $user->userDetails;
+        $userDetails->account_status = $request->status;
+        $userDetails->save();
+
+        return redirect()->route('admin.user.list')->with('success', 'User updated successfully');
     }
 }

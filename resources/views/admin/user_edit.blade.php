@@ -55,7 +55,7 @@
                                         <td class="fw-medium">Ref ID</td>
                                         <td>
                                             @if ($user->ref_id)
-                                                <a href="{{ route('admin.user.edit', $user->ref_id) }}" target="_blank">
+                                                <a href="{{ route('admin.user.info', $user->ref_id) }}" target="_blank">
                                                     {{ $user->ref_id }}
                                                 </a>
                                             @else
@@ -400,7 +400,7 @@
                                         @foreach ($referralRewards as $referralReward)
                                         <tr>
                                             <td>
-                                                <a href="{{ route('admin.user.edit', $referralReward['referee_id']) }}" target="_blank">
+                                                <a href="{{ route('admin.user.info', $referralReward['referee_id']) }}" target="_blank">
                                                     {{$referralReward['referee_id']}}
                                                 </a>
                                             </td>

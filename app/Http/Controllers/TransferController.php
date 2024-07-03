@@ -48,7 +48,7 @@ class TransferController extends Controller
             ->first();
 
         if ($existingOtp) {
-            return response()->json(['message' => 'An unused OTP already exists. Please wait for it to expire or use it before requesting a new one.'], 400);
+            return response()->json(['message' => 'An unused OTP already exists. Please wait 10 minutes for it to expire or use it before requesting a new one.'], 400);
         }
 
         // OTP generation logic

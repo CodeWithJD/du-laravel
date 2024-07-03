@@ -81,8 +81,11 @@
                                             <td class="date">{{ $user->ref_id }}</td>
                                             <td class="date">{{ $user->invite_code }}</td>
                                             <td>
-                                                <a href="{{ route('admin.user.edit', $user->id) }}" class="text-primary d-inline-block edit-item-btn">
-                                                    <i class="ri-pencil-fill fs-16"></i>
+                                                <a href="{{ route('admin.user.info', $user->id) }}" class="text-primary d-inline-block edit-item-btn">
+                                                    <i class="fs-3 ri-file-info-fill"></i>
+                                                </a>
+                                                <a class="ms-2" href="{{ route('admin.user.edit', $user->id) }}"> <!-- Update the href attribute here -->
+                                                    <i class="fs-3 ri-edit-box-line"></i>
                                                 </a>
                                             </td>
                                         </tr>

@@ -105,7 +105,11 @@ Route::prefix('user')->group(function () {
 
             Route::get('/users', [AdminUsersController::class, 'userListShow'])->name('users');
             Route::get('/users/search', [AdminUsersController::class, 'userListShow'])->name('user.list');
-            Route::get('/admin/users/edit/{id}', [AdminUsersController::class, 'editUser'])->name('user.edit');
+            Route::get('/admin/users/info/{id}', [AdminUsersController::class, 'infoUser'])->name('user.info');
+
+            Route::get('/admin/user/{id}/edit', [AdminUsersController::class, 'edit'])->name('user.edit');
+            Route::put('/admin/user/{id}', [AdminUsersController::class, 'update'])->name('user.update');
+
         });
     });
 
