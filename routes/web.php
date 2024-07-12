@@ -17,7 +17,7 @@ use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminUsersController;
-use App\Http\Controllers\Admin\AdminSwapController;
+use App\Http\Controllers\Admin\AdminTransactionsController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -115,7 +115,8 @@ Route::prefix('user')->group(function () {
             Route::get('/users/search', [AdminUsersController::class, 'userListShow'])->name('user.list');
             Route::get('/admin/users/info/{id}', [AdminUsersController::class, 'infoUser'])->name('user.info');
 
-            Route::get('/swap', [AdminSwapController::class, 'swapListShow'])->name('swap');
+            Route::get('/transactions', [AdminTransactionsController::class, 'showTransactions'])->name('transactions');
+            Route::post('/transactions/update', [AdminTransactionsController::class, 'updateTransaction'])->name('transactions.update');
 
 
             Route::get('/admin/user/{id}/edit', [AdminUsersController::class, 'edit'])->name('user.edit');

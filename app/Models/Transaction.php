@@ -34,4 +34,12 @@ class Transaction extends Model
     {
         return $this->belongsTo(User::class, 'recipient_id');
     }
+
+    // Define the user relationship
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id')->withDefault([
+            'email' => 'N/A'
+        ]);
+    }
 }

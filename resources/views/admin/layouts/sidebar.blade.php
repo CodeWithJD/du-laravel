@@ -46,8 +46,8 @@
                 </li> <!-- end Dashboard Menu -->
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="">
-                        <i class="ri-bank-line"></i><span>Wallet</span></span>
+                    <a class="nav-link menu-link" href="{{route('admin.transactions')}}">
+                        <i class="ri-bank-line"></i><span>Transcations</span></span>
                     </a>
                 </li> <!-- end Dashboard Menu -->
 
