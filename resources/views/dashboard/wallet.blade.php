@@ -126,7 +126,7 @@
                                     <p>transfer to other users via via Email ID</p>
                                 </div>
                             </a>
-                            <a class="disabled" href="">
+                            <a class="disabled" href="{{ route('wallet.withdraw') }}">
                                 <div class="smartchain text-center rounded bg-white">
                                     <span class="text-primary fs-5">Send Via Crypto Network</span>
                                     <p>transfer to other users via Du Smartchain</p>

@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DirectsController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\TransferController;
+use App\Http\Controllers\BlockchainTransferController;
 use App\Http\Controllers\InvestmentsController;
 use App\Http\Controllers\ReferralLevelsController;
 use App\Http\Controllers\SwapController;
@@ -16,8 +17,7 @@ use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminUsersController;
-
-
+use App\Http\Controllers\Admin\AdminSwapController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -42,6 +42,14 @@ Route::prefix('user')->group(function () {
         Route::post('/wallet/validateTransfer', [TransferController::class, 'validateTransfer'])->name('wallet.validateTransfer');
         Route::post('/wallet/completeTransfer', [TransferController::class, 'completeTransfer'])->name('wallet.completeTransfer');
         Route::get('/dashboard/levels/{level}', [ReferralLevelsController::class, 'showLevelDetails'])->name('levels.show');
+
+        Route::get('/wallet/withdraw', [BlockchainTransferController::class, 'withdraw'])->name('wallet.withdraw');
+        Route::get('/wallet/validatewithdraw', [BlockchainTransferController::class, 'validateWithdraw'])->name('wallet.validateWithdraw');
+        Route::post('/wallet/completewithdraw', [BlockchainTransferController::class, 'completewithdraw'])->name('wallet.completewithdraw');
+
+
+
+
 
         // InvestmentsController routes
         Route::get('/investments', [InvestmentsController::class, 'index'])->name('investments.index');
@@ -106,6 +114,9 @@ Route::prefix('user')->group(function () {
             Route::get('/users', [AdminUsersController::class, 'userListShow'])->name('users');
             Route::get('/users/search', [AdminUsersController::class, 'userListShow'])->name('user.list');
             Route::get('/admin/users/info/{id}', [AdminUsersController::class, 'infoUser'])->name('user.info');
+
+            Route::get('/swap', [AdminSwapController::class, 'swapListShow'])->name('swap');
+
 
             Route::get('/admin/user/{id}/edit', [AdminUsersController::class, 'edit'])->name('user.edit');
             Route::put('/admin/user/{id}', [AdminUsersController::class, 'update'])->name('user.update');

@@ -1,9 +1,0 @@
-CREATE TABLE otp_codes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id BIGINT(20) UNSIGNED NULL,
-    otp_code VARCHAR(6) NOT NULL,
-    expires_at TIMESTAMP NOT NULL,
-    status ENUM('unused', 'used') DEFAULT 'unused',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-);
