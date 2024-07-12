@@ -37,7 +37,7 @@ class AdminTransactionsController extends Controller
         }
 
         // Fetch paginated transactions with latest first
-        $transactions = $query->latest()->paginate(10);
+        $transactions = $query->latest()->paginate(100);
 
         // Pass transactions and adminUser details to the view
         return view('admin.transactions', [
