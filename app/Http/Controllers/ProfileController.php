@@ -80,4 +80,17 @@ class ProfileController extends Controller
         return response()->json(['message' => 'Password successfully updated']);
     }
 
+    public function updateWallet(Request $request)
+    {
+        $request->validate([
+            'wallet_address' => 'required|string|max:255',
+        ]);
+
+        // Save the wallet address to the user's details
+        $userDetails = auth()->user()->userDetails; // Assuming `userDetails` is the relationship in the User model
+        $userDetails->withdrawal_wallet = $request->wallet_address;
+        $userDetails->save();
+
+        return response()->json(['message' => 'Wallet address updated successfully!'], 200);
+    }
 }

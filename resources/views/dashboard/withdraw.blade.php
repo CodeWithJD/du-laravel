@@ -20,7 +20,7 @@
             <br>
             <span>
             <span class="fw-bold">Remaining Limit:</span>
-            <span class="text-primary">{{ 100 - number_format($limit, 2) }}</span>
+            <span class="text-primary">{{ $limitWithdrawMax - number_format($limit, 2) }}</span>
             <span class="text-pink">DU</span>
             </span>
 
@@ -28,7 +28,7 @@
                 @csrf
                 <div class="input-group input-group-lg bg-white shadow-sm mt-3">
                     <span class="input-group-text bg-primary text-white">@lang('Wallet Address')</span>
-                    <input id="text" type="text" class="form-control border" name="walletaddress" value="{{ old('walletaddress') }}" required>
+                    <input id="text" type="text" class="form-control border small" name="walletaddress" value="{{ $wallet_address ?? 'Please Update MetaMask wallet under profile' }}" readonly>
                 </div>
 
                 <div class="input-group input-group-lg bg-white shadow-sm mt-3">
@@ -172,8 +172,8 @@
                         </div>
                     </div>
                     <div class="alert-content">
-                        <p class="mb-0">Review the recipient's information carefully, including their name, Wallet Address, and
-                            transfer amount. Once confirmed, complete the transaction.</p>
+                        <p class="mb-0">Please review the recipient's information carefully, including their name, Wallet Address, and
+                            transfer amount before preceding the transaction. <br> <span class="text-danger fw-bold">NOTE : Once confirmed, transaction will be complete within 24 hours.</span></p>
                     </div>
                 </div>
             @endisset

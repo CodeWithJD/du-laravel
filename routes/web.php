@@ -67,6 +67,8 @@ Route::prefix('user')->group(function () {
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
         Route::post('/profile/update-name', [ProfileController::class, 'updateName'])->name('update.name');
         Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
+        Route::post('/profile/update-wallet', [ProfileController::class, 'updateWallet']);
+
 
         // Activities controller
         Route::get('/activities', [ActivitiesController::class, 'show'])->name('activities.show');

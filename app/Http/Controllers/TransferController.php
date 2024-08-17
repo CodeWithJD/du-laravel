@@ -72,6 +72,11 @@ class TransferController extends Controller
 
     public function validateTransfer(Request $request)
     {
+        // Temporary disable function
+        if (false) {
+            return back()->withErrors(['email' => 'Function temporarily disabled.'])->withInput();
+        }
+
         $user = Auth::user();
 
         if (!$user) {
@@ -132,6 +137,12 @@ class TransferController extends Controller
 
     public function completeTransfer(Request $request)
     {
+
+        // Temporary disable function
+        if (false) {
+            return back()->withErrors(['email' => 'Function temporarily disabled.'])->withInput();
+        }
+
         $user = Auth::user();
 
         if (!$user) {

@@ -50,6 +50,7 @@
                                         <th>Recipient ID</th>
                                         <th>Recipient Address</th>
                                         <th>Status</th>
+                                        <th>Type</th>
                                         <th>Amount</th>
                                         <th>Transaction Hash</th>
                                         <th>Created At</th>
@@ -61,8 +62,12 @@
                                         <tr>
                                             <td class="d-none">{{ $transaction->id }}</td>
                                             <td>{{ $transaction->user->email ?? 'N/A' }}</td>
-                                            <td>{{ $transaction->user_id }}</td>
-                                            <td>{{ $transaction->recipient_id }}</td>
+                                            <td>
+                                                {{ $transaction->user_id }}
+                                            </td>
+                                            <td>
+                                                    {{ $transaction->recipient_id }}
+                                            </td>
                                             <td>{{ $transaction->recipient_address }}</td>
                                             <td>
                                                 @switch($transaction->status)
@@ -77,6 +82,27 @@
                                                         @break
                                                     @default
                                                         <span class="badge bg-secondary">{{ $transaction->status }}</span>
+                                                @endswitch
+                                            </td>
+                                            <td>
+                                                @switch($transaction->transaction_source)
+                                                    @case('usdt deposit')
+                                                        <span class="badge bg-success">{{ $transaction->transaction_source }}</span>
+                                                        @break
+                                                    @case('du deposit')
+                                                    <span class="badge bg-secondary">{{ $transaction->transaction_source }}</span>
+                                                        @break
+                                                    @case('Staking Deposit')
+                                                        <span class="badge bg-success">{{ $transaction->transaction_source }}</span>
+                                                        @break
+                                                    @case('Rewards')
+                                                    <span class="badge bg-success">{{ $transaction->transaction_source }}</span>
+                                                        @break
+                                                    @case('Metamask')
+                                                        <span class="badge bg-warning">{{ $transaction->transaction_source }}</span>
+                                                        @break
+                                                    @default
+                                                        <span class="badge bg-dark">{{ $transaction->transaction_source }}</span>
                                                 @endswitch
                                             </td>
                                             <td class="fw-bold">{{ $transaction->amount }}</td>

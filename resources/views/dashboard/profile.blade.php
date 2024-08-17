@@ -47,11 +47,11 @@
                                         <div class="mb-3">
                                             <label for="phonenumberInput" class="form-label">
                                                 Mobile Number
-                                                @if ($userDetails->mobile_verified == 1)
+                                                {{-- @if ($userDetails->mobile_verified == 1)
                                                     <span class="text-success fw-bold">Verified</span>
                                                 @else
                                                     <span class="text-danger fw-bold">Not Verified</span>
-                                                @endif
+                                                @endif --}}
                                             </label>
                                             <input type="text" class="form-control" value=" {{ $user->phone }} "
                                                 disabled>
@@ -62,7 +62,7 @@
                                         <div class="mb-3">
                                             <label for="countryInput" class="form-label">Country</label>
                                             <input type="text" class="form-control" id="countryInput"
-                                                placeholder="Country" value=" {{$user->country}} " disabled />
+                                                placeholder="Country" value=" {{ $user->country }} " disabled />
                                         </div>
                                     </div>
                                     <!--end col-->
@@ -78,11 +78,11 @@
                                         <div class="mb-3">
                                             <label for="emailInput" class="form-label">
                                                 Email Address
-                                                @if ($userDetails->email_verified == 1)
+                                                {{-- @if ($userDetails->email_verified == 1)
                                                     <span class="text-success fw-bold">Verified</span>
                                                 @else
                                                     <span class="text-danger fw-bold">Not Verified</span>
-                                                @endif
+                                                @endif --}}
                                             </label>
                                             <input type="email" class="form-control" placeholder="Enter your email"
                                                 value=" {{ $user->email }}" disabled>
@@ -128,6 +128,18 @@
                                                 value=" {{ $userDetails->last_login_ip }} " disabled />
                                         </div>
                                     </div>
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="updateWallet" class="form-label">Update Wallet Address</label>
+                                            <div class="input-group">
+                                                <input type="text" id="walletAddressInput" class="form-control"
+                                                    value="{{ $userDetails->withdrawal_wallet ?? 'Please connect MetaMask' }}" disabled>
+                                                <button id="connectWalletButton" class="btn btn-warning" type="button">Connect MetaMask</button>
+                                            </div>
+                                            <span id="walletUpdateMessage"></span>
+                                            <div class="loader" style="display: none;">Updating...</div>
+                                        </div>
+                                    </div>
                                     <!--end col-->
                                     <div class="col-lg-12">
                                         <div class="hstack gap-2 justify-content-start">
@@ -142,9 +154,11 @@
                         </div>
                         <!--end tab-pane-->
                         <div class="tab-pane" id="changePassword" role="tabpanel">
-                            <div class="alert alert-success alert-border-left alert-dismissible fade show" id="passwordUpdateMessage" role="alert" style="display: none;">
+                            <div class="alert alert-success alert-border-left alert-dismissible fade show"
+                                id="passwordUpdateMessage" role="alert" style="display: none;">
                                 <i class="ri-notification-off-line me-3 align-middle"></i>
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="row">
                                 <div class="col-lg-4">
@@ -225,36 +239,87 @@
         });
 
         $(document).ready(function() {
-    $('#updatePasswordButton').click(function() {
-        var oldPassword = $('#oldPasswordInput').val();
-        var newPassword = $('#newPasswordInput').val();
-        var confirmPassword = $('#confirmPasswordInput').val();
+            $('#updatePasswordButton').click(function() {
+                var oldPassword = $('#oldPasswordInput').val();
+                var newPassword = $('#newPasswordInput').val();
+                var confirmPassword = $('#confirmPasswordInput').val();
 
-        if (newPassword !== confirmPassword) {
-            $('#passwordUpdateMessage').text('New password and confirm password do not match.')
-                .removeClass('alert-success').addClass('alert-danger').show();
-            return;
-        }
+                if (newPassword !== confirmPassword) {
+                    $('#passwordUpdateMessage').text('New password and confirm password do not match.')
+                        .removeClass('alert-success').addClass('alert-danger').show();
+                    return;
+                }
 
-        $.ajax({
-            url: '/user/profile/update-password',
-            type: 'POST',
-            data: {
-                old_password: oldPassword,
-                new_password: newPassword,
-                new_password_confirmation: confirmPassword,
-                _token: '{{ csrf_token() }}'
-            },
-            success: function(response) {
-                $('#passwordUpdateMessage').text(response.message)
-                    .removeClass('alert-danger').addClass('alert-success').show();
-            },
-            error: function(xhr) {
-                $('#passwordUpdateMessage').text(xhr.responseJSON.message || 'Error updating password.')
-                    .removeClass('alert-success').addClass('alert-danger').show();
-            }
+                $.ajax({
+                    url: '/user/profile/update-password',
+                    type: 'POST',
+                    data: {
+                        old_password: oldPassword,
+                        new_password: newPassword,
+                        new_password_confirmation: confirmPassword,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        $('#passwordUpdateMessage').text(response.message)
+                            .removeClass('alert-danger').addClass('alert-success').show();
+                    },
+                    error: function(xhr) {
+                        $('#passwordUpdateMessage').text(xhr.responseJSON.message ||
+                                'Error updating password.')
+                            .removeClass('alert-success').addClass('alert-danger').show();
+                    }
+                });
+            });
         });
-    });
-});
+
+        $(document).ready(function() {
+            $('#connectWalletButton').click(async function() {
+                if (window.ethereum) {
+                    try {
+                        $(this).prop('disabled', true);
+                        $('.loader').show();
+
+                        // Request account access
+                        const accounts = await ethereum.request({
+                            method: 'eth_requestAccounts'
+                        });
+                        const walletAddress = accounts[0];
+
+                        // Display wallet address in input field
+                        $('#walletAddressInput').val(walletAddress);
+
+                        // Send wallet address to backend
+                        $.ajax({
+                            url: '/user/profile/update-wallet',
+                            method: 'POST',
+                            data: {
+                                wallet_address: walletAddress,
+                                _token: '{{ csrf_token() }}'
+                            },
+                            success: function(response) {
+                                $('#walletUpdateMessage').text(response.message)
+                                    .removeClass('text-danger').addClass('text-success');
+                            },
+                            error: function(xhr) {
+                                $('#walletUpdateMessage').text(
+                                    'Failed to update wallet address.').removeClass(
+                                    'text-success').addClass('text-danger');
+                            },
+                            complete: function() {
+                                $('#connectWalletButton').prop('disabled', false);
+                                $('.loader').hide();
+                            }
+                        });
+
+                    } catch (error) {
+                        console.error('Error connecting to MetaMask:', error);
+                        $('#walletUpdateMessage').text('Error connecting to MetaMask.').removeClass(
+                            'text-success').addClass('text-danger');
+                    }
+                } else {
+                    alert('MetaMask is not installed. Please install MetaMask and try again.');
+                }
+            });
+        });
     </script>
 @endsection

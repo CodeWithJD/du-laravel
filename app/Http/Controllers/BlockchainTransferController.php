@@ -21,11 +21,15 @@ class BlockchainTransferController extends Controller
 
         // Retrieve user's balance
         $userDetails = UserDetails::where('user_id', $user->id)->first();
+        $limitWithdrawMax = DB::table('reward_settings')->value('limit_withdraw_max');
+
 
         return view('dashboard.withdraw', [
             'name' => $user->name,
             'balance' => $userDetails->available_balance, // Pass available balance
             'limit' => $userDetails->daily_withdrawal_limit,
+            'wallet_address' => $userDetails->withdrawal_wallet,
+            'limitWithdrawMax' => $limitWithdrawMax,
 
         ]);
     }
@@ -70,7 +74,7 @@ class BlockchainTransferController extends Controller
 
         // Check if amount exceeds the max limit
         if ($validatedData['amount'] > $limitWithdrawMax) {
-            return back()->withErrors(['amount' => 'You cannot withdraw more than the maximum allowed limit in one transaction.'])->withInput();
+            return back()->withErrors(['amount' => 'You cannot withdraw more than 50 DU Coins per day.'])->withInput();
         }
 
         // Check if user has sufficient balance including fee
@@ -88,6 +92,9 @@ class BlockchainTransferController extends Controller
             return back()->withErrors(['amount' => 'Daily withdrawal limit exceeded.'])->withInput();
         }
 
+        $limitWithdrawMax = DB::table('reward_settings')->value('limit_withdraw_max');
+
+
         // Show transfer page again with recipient details
         return view('dashboard.withdraw', [
             'name' => $user->name,
@@ -98,6 +105,8 @@ class BlockchainTransferController extends Controller
             'totalAmount' => $totalAmount, // Pass total amount
             'otp' => $validatedData['otp'], // Pass total amount
             'limit' => $userDetails->daily_withdrawal_limit,
+            'limitWithdrawMax' => $limitWithdrawMax,
+
         ]);
     }
 
@@ -162,7 +171,7 @@ class BlockchainTransferController extends Controller
 
             // Record the transaction
             $transaction = Transaction::create([
-                'transaction_source' => 'Du Wallet',
+                'transaction_source' => 'Metamask',
                 'user_id' => $user->id,
                 'recipient_id' => null,
                 'sender_address' => null,

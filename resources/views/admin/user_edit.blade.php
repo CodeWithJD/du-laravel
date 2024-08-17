@@ -255,7 +255,7 @@
                                                         @if ($transaction->user_id == $user->id)
                                                             <span class="text-danger">{{ $transaction->user_id }}</span>
                                                         @else
-                                                            <a href="{{ route('admin.user.edit', $transaction->user_id) }}"
+                                                            <a href="{{ route('admin.user.info', $transaction->user_id) }}"
                                                                 target="_blank">
                                                                 <span class="fw-bold text-danger">{{ $transaction->user_id }}</span>
                                                             </a>
@@ -271,7 +271,7 @@
                                                         @if ($transaction->recipient_id == $user->id)
                                                             <span class="text-success">{{ $transaction->recipient_id }} Self</span>
                                                         @else
-                                                            <a href="{{ route('admin.user.edit', $transaction->recipient_id) }}"
+                                                            <a href="{{ route('admin.user.info', $transaction->recipient_id) }}"
                                                                 target="_blank">
                                                                 <span class="fw-bold text-success">{{ $transaction->recipient_id }}</span>
                                                             </a>

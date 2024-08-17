@@ -108,7 +108,7 @@ class SwapController extends Controller
 
         // Record the transaction
         Transaction::create([
-            'transaction_source' => "{$currency} Wallet",
+            'transaction_source' => "{$currency} deposit",
             'recipient_id' => $user->id,
             'amount' => $exchangeAmount,
             'status' => 'in Progress',
